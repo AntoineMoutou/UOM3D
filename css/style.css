@@ -2,16 +2,30 @@ html,body,a,h1,h2,h3,a,ul,li{
   margin: 0px;
   padding : 0px;
 }
-
-a{
-  text-decoration: none;
-}
-
 html{
   font-family: verdana,sans-serif;
-  fcolor : grey;
 }
-
+a{
+  text-decoration: none;
+  color: white;
+}
+ul{
+  margin: 0px 5px 0px 5px;
+}
+li{
+  list-style-type: none;
+  margin: 0px 5px 0px 5px;
+}
+input{
+  margin: 0px;
+  padding: 0px;
+  border: none;
+}
+button{
+  margin: 0px;
+  padding: 0px;
+  border: none;
+}
 #nav{
   width: 100%;
   background-color: #0a2c4f;
@@ -24,6 +38,14 @@ html{
 
   position:absolute;
 }
+.nav1{
+  width: 100%;
+
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 #logo{
   display: flex;
   flex-direction: row;
@@ -35,14 +57,21 @@ html{
   display: block;
 
 }
+#home{
+  font-size: 3em;
 
-.nav1{
-  width: 100%;
-
-  display:flex;
+  display: block;
+}
+#nav ul{
+  display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+}
+#nav li{
+  color: white;
+}
+#cb1{
+  display: none;
 }
 .nav2{
   width: 100%;
@@ -51,36 +80,6 @@ html{
   flex-direction: row;
   justify-content: center;
 }
-#nav ul{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-}
-
-ul{
-  margin: 0px 5px 0px 5px;
-}
-
-li{
-  list-style-type: none;
-  margin: 0px 5px 0px 5px;
-}
-#cb1{
-  display: none;
-}
-
-#home{
-  color: white;
-  font-size: 3em;
-
-  display: block;
-
-}
-.nav_bar{
-  color: white;
-}
-
 #header{
   width: 100%;
   height: 500px;
@@ -105,23 +104,44 @@ li{
 #header h3{
   margin: 20px;
 
-  text-shadow: 4px 4px #000000;
-
+  text-shadow: 2px 2px #000000;
 }
 #header form{
+  width: 50%;
   margin: 20px;
 
-  border: 3px solid white;
-  border-radius: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
-#header form input{
-  background-color: rgba(1, 1, 1, 0.1);
-  border-color: rgba(1, 1, 1, 0.1);
-  color: white;
+#header input{
+  color: black;
+
+  background-color: white;
+
+  border: 0px none black;
+
+  width: 100%;
+  height: 35px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#header button{
+  height: 35px;
+  width : 35px;
+}
+#header button img{
+  height: 35px;
+  width : 35px;
 }
 
+a:hover{
+  background-color: white;
+  color: #0a2c4f;
+}
 
 /*
 blue_UoM = #0a2c4f
-
+change css = 700px
 */
