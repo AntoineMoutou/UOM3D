@@ -1,25 +1,17 @@
-function setHTML() {
-  var height = document.getElementById("min").offsetHeight +'px';
-  document.getElementById("content").style.top = height;
-}
-
 function set_dev_choice() {
   document.getElementById("cb1").onclick = function() {
     if (document.getElementById("cb1").checked){
-      var height = document.getElementById("nav").offsetHeight +'px';
+      var dis = "flex";
     }
     else{
-      var height = document.getElementById("min").offsetHeight +'px';
+      var dis = "none";
     }
-    document.getElementById("content").style.top = height;
+    document.getElementById("topics").style.display = dis;
   }
   }
-
-
 
 function main() {
 
-  setHTML();
   set_dev_choice();
 }
 
