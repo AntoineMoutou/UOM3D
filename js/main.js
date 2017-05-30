@@ -1,6 +1,6 @@
 function setHTML() {
   var height = document.getElementById("min").offsetHeight +'px';
-  document.getElementById("header").style.top = height;
+  document.getElementById("content").style.top = height;
 }
 
 function set_dev_choice() {
@@ -11,7 +11,7 @@ function set_dev_choice() {
     else{
       var height = document.getElementById("min").offsetHeight +'px';
     }
-    document.getElementById("header").style.top = height;
+    document.getElementById("content").style.top = height;
   }
   }
 

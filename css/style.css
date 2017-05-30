@@ -1,4 +1,4 @@
-html,body,a,h1,h2,h3,a,ul,li{
+html,body,a,p,h1,h2,h3,a,ul,li,header,section,article,footer{
   margin: 0px;
   padding : 0px;
 }
@@ -8,6 +8,7 @@ html{
 a{
   text-decoration: none;
   color: white;
+  display: block;
 }
 ul{
   margin: 0px 5px 0px 5px;
@@ -26,6 +27,7 @@ button{
   padding: 0px;
   border: none;
 }
+
 #nav{
   width: 100%;
   background-color: #0a2c4f;
@@ -54,13 +56,13 @@ button{
 }
 #img_logo{
   height: 4em;
-  display: block;
+  width: 3.5em;
 
+  background-image: url("../img/uom_logo.jpg");
+  background-size: contain;
 }
 #home{
   font-size: 3em;
-
-  display: block;
 }
 #nav ul{
   display: flex;
@@ -80,11 +82,9 @@ button{
   flex-direction: row;
   justify-content: center;
 }
-#header{
+#content{
   width: 100%;
-  height: 500px;
-  background-image: url("../img/header_img.jpg");
-  color: white;
+  background-color: #0a2c4f;
 
   position: relative;
   display: flex;
@@ -94,19 +94,35 @@ button{
 
   z-index: 2
 }
-#header h1{
+
+header{
+  width: 100%;
+  height: 500px;
+  background-color: #0a2c4f;
+  background-image: url("../img/header_img.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+header h1{
   font-size: 3em;
 
   margin: 20px;
 
-  text-shadow: 4px 4px #000000;
+  text-shadow: 3px 3px #000000;
 }
-#header h3{
+header h3{
   margin: 20px;
 
   text-shadow: 2px 2px #000000;
 }
-#header form{
+header form{
   width: 50%;
   margin: 20px;
 
@@ -115,7 +131,7 @@ button{
   justify-content: flex-start;
   align-items: center;
 }
-#header input{
+header input{
   color: black;
 
   background-color: white;
@@ -127,18 +143,53 @@ button{
   padding-left: 5px;
   padding-right: 5px;
 }
-#header button{
+header button{
   height: 35px;
   width : 35px;
-}
-#header button img{
-  height: 35px;
-  width : 35px;
+  background-color: white;
+  background-image: url("../img/b_1_img.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-a:hover{
-  background-color: white;
-  color: #0a2c4f;
+section{
+
+}
+article{
+
+}
+footer{
+  width: 100%;
+
+  color: white;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#essential,#go_up{
+  width: 20%;
+  margin: 20px;
+}
+#credits{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+#go_up{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+a:hover, #topics:hover{
+  color: orange;
 }
 
 /*
