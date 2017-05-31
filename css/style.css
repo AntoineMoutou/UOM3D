@@ -172,7 +172,9 @@ section{
 
 }
 article{
-
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 footer{
   width: 100%;
