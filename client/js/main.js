@@ -135,8 +135,9 @@ window.onload = function() {
   */
   function document_select(e){
     if(busy){ return; }
-
+    console.log("cool");
     var file = DOM_upload_button.files[0];
+    console.log("cool");
     DOM_upload_button.value = "";
     e.dataTransfer = null;
     handle_file(file);
