@@ -31,6 +31,9 @@ window.onload = function() {
 
   var loader = document.getElementById("loader");
 
+  var DOM_maj = document.getElementById("maj");
+  DOM_maj.innerHTML = "Jun 01.2017"
+
   /**
   * @function
   * @name init_listener
