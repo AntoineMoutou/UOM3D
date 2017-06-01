@@ -34,7 +34,7 @@ var upload = multer( { limits:
     fieldNameSize: 999999999,
     fieldSize: 999999999
   }});
-  
+
 /**
 * Transform a string of the formdata in matrix Uint8array
 * @param str {str} - The string that contains the data of the .zip
@@ -48,26 +48,25 @@ function convertBinaryStringToUint8Array(str) {
 }
 
 app.get('*',function(req,res){
-	
+
 	res.set('Access-Control-Allow-Origin','*');
 	res.set('Access-Control-Allow-Headers', 'Origin');
-	
+
 	var path = req.path.substring(1,req.path.length);
-	console.log(path);
-	
+
 	var content;
 
 	fs.readFile(path,'utf8',function(err,data){
 		if (err) throw err;
-		
+
 		else{
 			res.send(data);
-		}						
+		}
 	});
 });
 
 app.post('/',upload.single('zip'), function (req, res, next) {
-  
+
   var data      = '';
   var name      = req.body.name;
 
@@ -90,7 +89,6 @@ app.post('/',upload.single('zip'), function (req, res, next) {
         .on('finish', function () {
             console.log('zip/' + name + '.zip' + " written.");
             dezip(name);
-			console.log("data_saved");
             res.send("data_saved");
         });
       });
@@ -108,4 +106,4 @@ app.post('/',upload.single('zip'), function (req, res, next) {
 });
 
 app.listen(8080);
-console.log("Serveur ouvert à l'adresse http://127.0.0.1:8080/");
+console.log("Server open at http://127.0.0.1:8080/");

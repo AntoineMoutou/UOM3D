@@ -16,7 +16,7 @@ Building.prototype.equalTo = function(building){
   return false;
 }
 
-function main() {
+window.onload = function() {
 
   var zip;
   var building_list = [];
@@ -24,7 +24,7 @@ function main() {
 
   var DOM_nav_topic = document.getElementById("nav_topic");
   DOM_nav_topic.value = true;
-  console.log(DOM_nav_topic);
+
   var DOM_topics = document.getElementById("topics");
 
   var DOM_upload_button = document.getElementById("upload_button");
@@ -34,7 +34,7 @@ function main() {
   /**
   * @function
   * @name init_listener
-  * @description Initialise les écouteurs d'évènements de la page
+  * @description Initialise the listener of the page
   */
   function init_listener(){
     zip = new JSZip();
@@ -55,9 +55,9 @@ function main() {
   /**
   * @function
   * @name cb_topics_listener
-  * @description Écouteur d'évènement associé au click sur la checkbox des topics
-  * @listens DOM_cb_topics.click
-  * @param e {event} e - l'évènement déclenché par le click
+  * @description Listener of the topics
+  * @listens DOM_nav_topics.click
+  * @param e {event} e - The listner triggered by the click
   */
   function cb_topics_listener(e) {
     e.preventDefault();
@@ -76,9 +76,9 @@ function main() {
   /**
   * @function
   * @name document_drop
-  * @description Écouteur d'évènement associé au glisser & déposer d'un fichier
+  * @description Listener of the drag and drop of a file
   * @listens document.drop
-  * @param e {event} e - l'évènement déclenché par le glisser & déposer
+  * @param e {event} e - The listner triggered by the drag and drop
   */
   function document_drop(e){
     if(busy){ return; }
@@ -99,9 +99,9 @@ function main() {
   /**
   * @function
   * @name document_select
-  * @description Écouteur d'évènement associé au clique sur le bouton de chargement d'un fichier
+  * @description Listener of load file button
   * @listens DOM_upload_button.change
-  * @param {event} e - l'évènement déclenché par le chargement d'un fichier
+  * @param {event} e - The listner triggered by the load of a file
   */
   function document_select(e){
     if(busy){ return; }
@@ -115,8 +115,8 @@ function main() {
   /**
   * @function
   * @name handle_file
-  * @description Vérifie le contenu du fichier ZIP, et supprime les fichiers supplémentaires
-  * @param {file} file - Le fichier chargé par l'utilisateur
+  * @description Check the content of the zip file
+  * @param {file} file - Th zip file loaded by the user
   */
   function handle_file(file){
     busy = true;
@@ -152,7 +152,7 @@ function main() {
         .then(function success(content) {
           building.zip_uint8array = content;
           busy = false;
-          upload_file(building);
+          upload_file();
         }, function error(e) {
           throw e;
         });
@@ -167,15 +167,13 @@ function main() {
 
   /**
   * @function
-  * @name toolbox_listener
-  * @description Écouteur d'évènements des boutons radio de la boite à outil: réagis au clique souris, et envoie une requête AJAX
-  * vers le serveur pour obtenir le résultat de l'opération demandée
-  * @param {EventTarget} e - La cible du clique souris
+  * @name upload_file
+  * @description Send the zip file to the server
   */
-  function upload_file(e){
+  function upload_file(){
     var building = null;
 
-    building = building_list[0]
+    building = building_list[building_list.length-1];
 
     if(building == null){
       alert("Aucun fichier importé", 1500);
@@ -221,9 +219,9 @@ function main() {
   /**
   * @function
   * @name alert
-  * @description Affiche un texte d'alerte au premier plan
-  * @param {String} text - Le texte à afficher à l'écran
-  * @param {Integer} timeout - La durée d'affichage de l'alerte
+  * @description Display an alert text
+  * @param {String} text - The text to display
+  * @param {Integer} timeout - The diplay time
   */
   function alert(text,timeout=1500){
     var div = document.createElement("div");
@@ -239,35 +237,5 @@ function main() {
     }, timeout);
   }
 
-
-  function set_btest() {
-    document.getElementById("btest").onclick = function(){
-      var xhr = new XMLHttpRequest();
-
-      // xhr.open('GET','http://antoinemoutou.github.io/cd1/test1_geometry_MasterJSON.json',true);
-
-      xhr.open('GET','http://alinko33.000webhostapp.com/unimelb/test.php',true);
-
-      xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-
-      xhr.addEventListener('readystatechange', function(e) {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          var resp = xhr.responseText;
-
-          document.getElementById("ptest").innerHTML = resp;
-        }
-      });
-
-      xhr.send()
-    }
-  }
-
-
-
-
   init_listener();
-
-  set_btest();
 }
-
-main();
