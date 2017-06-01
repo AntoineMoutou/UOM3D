@@ -142,7 +142,7 @@ window.onload = function() {
           if(building_list[i].equalTo(building)){
             busy = false;
             loader.style.display = "none";
-            alert("Fichier déjà importé",1500);
+            alert("File already imported",1500);
             return;
           }
         }
@@ -160,7 +160,7 @@ window.onload = function() {
       else{
         busy = false;
         loader.style.display = "none";
-        alert("ZIP incorrect. Manque: "+file_types.toString(), 2500);
+        alert("Incorrect ZIP. Lack of: "+file_types.toString(), 2500);
       }
     });
   }
@@ -176,7 +176,7 @@ window.onload = function() {
     building = building_list[building_list.length-1];
 
     if(building == null){
-      alert("Aucun fichier importé", 1500);
+      alert("No inported files", 1500);
       return;
     }
 
