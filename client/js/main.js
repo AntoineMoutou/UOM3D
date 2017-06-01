@@ -32,7 +32,34 @@ window.onload = function() {
   var loader = document.getElementById("loader");
 
   var DOM_maj = document.getElementById("maj");
-  DOM_maj.innerHTML = "Jun 01.2017"
+  DOM_maj.innerHTML = "Jun 01.2017";
+
+  var DOM_title = document.getElementById("title");
+  var page_name = DOM_title.children[0].innerHTML;
+  console.log(page_name);
+
+  /**
+  * @function
+  * @name set_page
+  * @description Set the different elements of the page
+  */
+  function set_page() {
+    set_header_background();
+  }
+
+  /**
+  * @function
+  * @name set_header_background
+  * @description Set the background-image of the page
+  */
+  function set_header_background() {
+    if (page_name == "UOM3D"){
+      DOM_title.style.backgroundImage = 'url("img/header_img.jpg")';
+    }
+    else if(page_name.substring(0,6) == "Topics"){
+      DOM_title.style.backgroundImage = 'url("../img/topic'+page_name.substring(7,page_name.length)+'.jpg")'
+    }
+  }
 
   /**
   * @function
@@ -240,5 +267,6 @@ window.onload = function() {
     }, timeout);
   }
 
+  set_page();
   init_listener();
 }

@@ -68,7 +68,7 @@ nav li{
   background-size: contain;
 }
 #home{
-  font-size: 3em;
+  font-size: 2em;
 }
 #nav_topic:hover{
   color: orange;
@@ -110,7 +110,7 @@ header{
   width: 100%;
   height: 500px;
   background-color: #0a2c4f;
-  background-image: url("../img/header_img.jpg");
+  /*background-image: url("../img/header_img.jpg");*/
   background-position: center;
   background-repeat: no-repeat;
   color: white;
@@ -122,8 +122,13 @@ header{
 
 }
 #title h1{
-  font-size: 3em;
-
+  font-family: 'Goudy Old Style',Verdana;
+  font-size: 4em;
+  font-style: italic;
+  font-weight: normal;
+  font-variant: normal;
+  font-stretch: normal;
+  text-align: center;
   margin: 20px;
 
   text-shadow: 3px 3px #000000;
@@ -167,19 +172,48 @@ header{
   cursor: pointer;
 }
 
-section{
-  background-color: #DDDDDD;
+main{
+  background-color: #FFFFFF;
   color: black;
-
-}
-article{
-  background-color: #DDDDDD;
-  color: black;
+  text-align: justify;
 
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: flex-start;
 }
+section{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+aside{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+article{
+
+  margin: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.master_link{
+  text-align: center;
+  padding: 5px;
+  background-color: #DDDDDD;
+  border: solid 2px black;
+  color: black;
+}
+
+
 #upload_label{
   padding: 5px;
   border: solid 2px black;
@@ -189,12 +223,7 @@ article{
 #upload_button{
   display: none;
 }
-#master_link{
-  padding: 5px;
-  background-color: #e74c3c;
-  border: solid 2px black;
-  color: black;
-}
+
 
 footer{
   width: 100%;
