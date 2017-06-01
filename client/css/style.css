@@ -178,7 +178,19 @@ article{
   flex-direction: row;
   justify-content: space-around;
 }
+#upload_label{
+  padding: 5px;
+  border: solid 2px black;
+  background-color: #e74c3c;
+  cursor: pointer;
+}
+#upload_button{
+  display: none;
+}
 #master_link{
+  padding: 5px;
+  background-color: #e74c3c;
+  border: solid 2px black;
   color: black;
 }
 
@@ -273,7 +285,6 @@ footer{
   font-size: 1.4em;
   font-weight: normal;
 }
-
 
 a:hover, #topics:hover{
   color: orange;
