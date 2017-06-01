@@ -184,6 +184,7 @@ main{
 }
 section{
   width: 60%;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -192,18 +193,25 @@ section{
 }
 aside{
   width: 40%;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 article{
-
+  width:100%;
   margin: 20px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+.top_content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .master_link{
   text-align: center;

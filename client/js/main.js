@@ -16,50 +16,15 @@ Building.prototype.equalTo = function(building){
   return false;
 }
 
-window.onload = function() {
+function main() {
 
   var zip;
   var building_list = [];
   var busy = true;
 
-  var DOM_nav_topic = document.getElementById("nav_topic");
-  DOM_nav_topic.value = true;
-
-  var DOM_topics = document.getElementById("topics");
-
   var DOM_upload_button = document.getElementById("upload_button");
 
   var loader = document.getElementById("loader");
-
-  var DOM_maj = document.getElementById("maj");
-  DOM_maj.innerHTML = "Jun 01.2017";
-
-  var DOM_title = document.getElementById("title");
-  var page_name = DOM_title.children[0].innerHTML;
-  console.log(page_name);
-
-  /**
-  * @function
-  * @name set_page
-  * @description Set the different elements of the page
-  */
-  function set_page() {
-    set_header_background();
-  }
-
-  /**
-  * @function
-  * @name set_header_background
-  * @description Set the background-image of the page
-  */
-  function set_header_background() {
-    if (page_name == "UOM3D"){
-      DOM_title.style.backgroundImage = 'url("img/header_img.jpg")';
-    }
-    else if(page_name.substring(0,6) == "Topics"){
-      DOM_title.style.backgroundImage = 'url("../img/topic'+page_name.substring(7,page_name.length)+'.jpg")'
-    }
-  }
 
   /**
   * @function
@@ -68,39 +33,17 @@ window.onload = function() {
   */
   function init_listener(){
     zip = new JSZip();
-    // console.log("JSZip support:"); console.log(JSZip.support);
 
     document.addEventListener('drop', document_drop, false);
     var e_prevent_default = function(e){ e.preventDefault(); };
     document.addEventListener('dragover', e_prevent_default, false);
     document.addEventListener('dragleave', e_prevent_default, false);
 
-    DOM_nav_topic.addEventListener("click",cb_topics_listener, false);
+
 
     DOM_upload_button.addEventListener('change', document_select, false);
 
     busy = false;
-  }
-
-  /**
-  * @function
-  * @name cb_topics_listener
-  * @description Listener of the topics
-  * @listens DOM_nav_topics.click
-  * @param e {event} e - The listner triggered by the click
-  */
-  function cb_topics_listener(e) {
-    e.preventDefault();
-    if (DOM_nav_topic.value){
-      var dis = "flex";
-      DOM_nav_topic.value = false;
-    }
-    else{
-      var dis = "none";
-      DOM_nav_topic.value = true;
-    }
-    DOM_topics.style.display = dis;
-    console.log(DOM_nav_topic);
   }
 
   /**
@@ -177,13 +120,12 @@ window.onload = function() {
             return;
           }
         }
-        building_list.push(building);
 
         zip_file.generateAsync({type:"uint8array"})    // Lecture du ZIP au format UInt8Array pour l'envoi sur le serveur Node
         .then(function success(content) {
           building.zip_uint8array = content;
           busy = false;
-          upload_file();
+          upload_file(building);
         }, function error(e) {
           throw e;
         });
@@ -201,10 +143,7 @@ window.onload = function() {
   * @name upload_file
   * @description Send the zip file to the server
   */
-  function upload_file(){
-    var building = null;
-
-    building = building_list[building_list.length-1];
+  function upload_file(building){
 
     if(building == null){
       alert("No inported files", 1500);
@@ -224,13 +163,13 @@ window.onload = function() {
 
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200){
-        // console.log(xhr.responseText);
         if(xhr.responseText == "error"){
           alert("Loading error", 2000);
         }
         else{
           if(xhr.responseText == "data_saved"){
             alert("Data saved !", 2000)
+            building_list.push(building);
           };
         }
 
@@ -268,6 +207,5 @@ window.onload = function() {
     }, timeout);
   }
 
-  set_page();
   init_listener();
 }
