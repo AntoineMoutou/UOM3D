@@ -15,11 +15,12 @@ const http          = require('http');
 const express       = require('express');
 const url           = require('url');
 const querystring   = require('querystring');
-var app           = express();
+var app             = express();
 const fs            = require('fs');
 const unzip         = require('unzip2');
 const multer        = require('multer');
 const JSZip         = require("jszip");
+const jsonfile      = require("jsonfile");
 
 /**
  * Unzip the file out.zip in the zip folder and write his content in the folder named data
@@ -69,10 +70,15 @@ app.post('/',upload.single('zip'), function (req, res, next) {
 
   var data      = '';
   var name      = req.body.name;
+  var title     = req.body.title;
+  var topic     = req.body.topic;
+  var content   = req.body.content;
+  var url       = req.body.url;
 
   console.log(req.body.name);
 
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Origin','*');
+	res.set('Access-Control-Allow-Headers', 'Origin');
 
 /**
 * @function
@@ -81,7 +87,7 @@ app.post('/',upload.single('zip'), function (req, res, next) {
 * @param data {Uint8Array} - The content of the .zip send by the client
 * @param name {name} - the name of zip/file send by the client
 */
-  function save(data,name) {
+  function save(data,name,title,topic,content,url) {
       var zip = new JSZip();
       zip.loadAsync(data).then(function () {
         zip.generateNodeStream({type:'nodebuffer',streamFiles:true})
@@ -89,16 +95,33 @@ app.post('/',upload.single('zip'), function (req, res, next) {
         .on('finish', function () {
             console.log('zip/' + name + '.zip' + " written.");
             dezip(name);
+            edit_json(name,title,topic,content,url);
             res.send("data_saved");
         });
       });
   }
 
+function edit_json(name,title,topic,content,url) {
+  console.log("cool",content);
+  var add_data = JSON.parse('{"title":"'+title+'","topic":"'+topic+'","name":"'+name+'","content":"'+content+'","url":"'+url+'"}');
 
+  var old_file = 'articles/articles.json';
+  var old_data = '';
+  jsonfile.readFile(old_file,'utf8',function(err,obj) {
+    if (err) throw err;
+    else {
+      old_data = obj;
+      old_data.articles.push(add_data);
+      jsonfile.writeFile(old_file,old_data),function(err) {
+        if (err) throw err;
+      }
+    }
+  })
+}
 
   if (typeof(req.body.zip) !== 'undefined'){
       data = convertBinaryStringToUint8Array(req.body.zip);
-      save(data,name);
+      save(data,name,title,topic,content,url);
   }
   else {
     send("error");

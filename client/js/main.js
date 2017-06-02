@@ -4,9 +4,13 @@
 * @requires JSZip {@link https://stuk.github.io/jszip/}
 */
 
-function Building(name){
+function Building(name,title,topic,content){
   this.name = name;
   this.zip_uint8array;
+  this.title = title;
+  this.topic = topic;
+  this.content = content;
+  this.url = "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title="+this.title+"&batchSize=1&latitude=-37.7952976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252F"+this.name+"%252F"+this.name+".json%26name%3DUoM_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200";
 }
 
 Building.prototype.equalTo = function(building){
@@ -23,6 +27,7 @@ function main() {
   var busy = true;
 
   var DOM_upload_button = document.getElementById("upload_button");
+  var DOM_drag_zone = document.getElementById("drag_zone");
 
   var loader = document.getElementById("loader");
 
@@ -34,16 +39,53 @@ function main() {
   function init_listener(){
     zip = new JSZip();
 
-    document.addEventListener('drop', document_drop, false);
+    DOM_drag_zone.addEventListener('drop', document_drop, false);
     var e_prevent_default = function(e){ e.preventDefault(); };
-    document.addEventListener('dragover', e_prevent_default, false);
-    document.addEventListener('dragleave', e_prevent_default, false);
+    DOM_drag_zone.addEventListener('dragover', e_prevent_default, false);
+    DOM_drag_zone.addEventListener('dragleave', e_prevent_default, false);
 
 
 
     DOM_upload_button.addEventListener('change', document_select, false);
 
     busy = false;
+  }
+
+  function set_building_list() {
+
+    building_list = [];
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://127.0.0.1:8080/articles/articles.json", true);
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200){
+        if(xhr.responseText == "undefined"){
+          alert("Request error", 2000);
+        }
+        else{
+          var response = xhr.responseText;
+          var json_response = JSON.parse(response);
+
+
+          json_response.articles.forEach(function(element){
+            var name = element.name;
+            var title = element.title;
+            var topic = element.topic;
+            var content = element.content;
+
+            var temp_building = new Building(name,title,topic,content);
+            building_list.push(temp_building);
+          });
+        }
+        loader.style.display = "none";
+      }
+      else if(xhr.readyState == 4 && xhr.status != 200){
+        loader.style.display = "none";
+        alert("Servor error",2000);
+      }
+    };
+    xhr.send();
   }
 
   /**
@@ -110,25 +152,42 @@ function main() {
         zip_file = zip;
         json_file = zip.file(/.json$/i)[0];
         kml_file = zip.file(/.kml$/i)[0];
-        var building = new Building(json_file.name.split(".")[0]);
 
-        for (var i = 0; i < building_list.length; i++) {
-          if(building_list[i].equalTo(building)){
-            busy = false;
-            loader.style.display = "none";
-            alert("File already imported",1500);
-            return;
+        var tmp_title = document.getElementById("in_title").value;
+        var tmp_topic = document.getElementById("in_topic").options[document.getElementById("in_topic").selectedIndex].value;
+        var tmp_content = document.getElementById("in_content").value;
+
+        console.log(tmp_title);
+        console.log(tmp_topic);
+        console.log(tmp_content);
+
+        if (tmp_title && tmp_topic && tmp_content){
+
+          var building = new Building(json_file.name.split(".")[0],tmp_title,tmp_topic,tmp_content);
+
+          for (var i = 0; i < building_list.length; i++) {
+            if(building_list[i].equalTo(building)){
+              busy = false;
+              loader.style.display = "none";
+              alert("File already imported",1500);
+              return;
+            }
           }
-        }
 
-        zip_file.generateAsync({type:"uint8array"})    // Lecture du ZIP au format UInt8Array pour l'envoi sur le serveur Node
-        .then(function success(content) {
-          building.zip_uint8array = content;
+          zip_file.generateAsync({type:"uint8array"})    // Lecture du ZIP au format UInt8Array pour l'envoi sur le serveur Node
+          .then(function success(content) {
+            building.zip_uint8array = content;
+            busy = false;
+            upload_file(building);
+          }, function error(e) {
+            throw e;
+          });
+        }
+        else {
           busy = false;
-          upload_file(building);
-        }, function error(e) {
-          throw e;
-        });
+          loader.style.display = "none";
+          alert("Please fill the form ".toString(), 2500);
+        }
       }
       else{
         busy = false;
@@ -158,6 +217,11 @@ function main() {
     form.append('name', building.name);
     form.append('zip',building.zip_uint8array);
 
+    form.append('title',building.title);
+    form.append('topic',building.topic);
+    form.append('content',building.content);
+    form.append('url',building.url);
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://127.0.0.1:8080/", true);
 
@@ -172,7 +236,6 @@ function main() {
             building_list.push(building);
           };
         }
-
         busy = false;
         loader.style.display = "none";
       }
@@ -182,7 +245,6 @@ function main() {
         alert("Servor error",2000);
       }
     };
-
     xhr.send(form);
   }
 
@@ -207,5 +269,6 @@ function main() {
     }, timeout);
   }
 
+  set_building_list();
   init_listener();
 }
