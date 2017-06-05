@@ -71,7 +71,7 @@ app.post('/',upload.single('zip'), function (req, res, next) {
   var data      = '';
   var name      = req.body.name;
   var title     = req.body.title;
-  var topic     = req.body.topic;
+  var apps     = req.body.apps;
   var content   = req.body.content;
   var url       = req.body.url;
 
@@ -87,7 +87,7 @@ app.post('/',upload.single('zip'), function (req, res, next) {
 * @param data {Uint8Array} - The content of the .zip send by the client
 * @param name {name} - the name of zip/file send by the client
 */
-  function save(data,name,title,topic,content,url) {
+  function save(data,name,title,apps,content,url) {
       var zip = new JSZip();
       zip.loadAsync(data).then(function () {
         zip.generateNodeStream({type:'nodebuffer',streamFiles:true})
@@ -95,15 +95,15 @@ app.post('/',upload.single('zip'), function (req, res, next) {
         .on('finish', function () {
             console.log('zip/' + name + '.zip' + " written.");
             dezip(name);
-            edit_json(name,title,topic,content,url);
+            edit_json(name,title,apps,content,url);
             res.send("data_saved");
         });
       });
   }
 
-function edit_json(name,title,topic,content,url) {
+function edit_json(name,title,apps,content,url) {
   console.log("cool",content);
-  var add_data = JSON.parse('{"title":"'+title+'","topic":"'+topic+'","name":"'+name+'","content":"'+content+'","url":"'+url+'"}');
+  var add_data = JSON.parse('{"title":"'+title+'","apps":"'+apps+'","name":"'+name+'","content":"'+content+'","url":"'+url+'"}');
 
   var old_file = 'articles/articles.json';
   var old_data = '';
@@ -121,7 +121,7 @@ function edit_json(name,title,topic,content,url) {
 
   if (typeof(req.body.zip) !== 'undefined'){
       data = convertBinaryStringToUint8Array(req.body.zip);
-      save(data,name,title,topic,content,url);
+      save(data,name,title,apps,content,url);
   }
   else {
     send("error");

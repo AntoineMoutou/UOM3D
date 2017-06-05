@@ -7,6 +7,7 @@
     <meta name="keywords" content="Unimelb, 3D ,University of Melbourne, Buildings, 3dcitydb">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="shortcut icon" href="../img/mini-csdila-logo.ico">
     <link rel="stylesheet" href="../css/style.css">
 
     <script src="../js/jszip.min.js"></script>
@@ -14,47 +15,48 @@
     <script src="../js/main.js"></script>
     <script src="../js/set.js"></script>
 
-    <title>UOM3D Import</title>
+    <title>Import</title>
   </head>
   <body>
 
     <header>
       <nav>
-        </div>
-          <div id="logo">
-            <a href="http://www.unimelb.edu.au/" id="img_logo"></a>
-            <a href="../index.html" id="home">UOM3D</a>
+          <div id="nav-left">
+            <a href="http://csdila.ie.unimelb.edu.au/" id="logo-csdila"></a>
+            <a href="../index.html" id="home">Home</a>
           </div>
-          <ul>
-            <li>
-              <label id="nav_topic" value="">Topics</label>
-            </li>
-            <li>
-              <a href="../nav/import.html">Import</a>
-            </li>
-            <li>
-              <a href="../nav/developer.html">Developers</a>
-            </li>
-            <li>
-              <a href="../nav/about.html">About Us</a>
-            </li>
-          </ul>
+          <div id="nav-right">
+            <ul>
+              <li>
+                <label id="nav_apps" value="">Apps</label>
+              </li>
+              <li>
+                <a href="../nav/import.html">Import</a>
+              </li>
+              <li>
+                <a href="../nav/team.html">Team</a>
+              </li>
+              <li>
+                <a href="../nav/contact.html">Contact Us</a>
+              </li>
+            </ul>
+            <a href="http://www.unimelb.edu.au/" id="logo-unimelb"></a>
+          </div>
       </nav>
-      <div id="topics">
+      <div id="apps">
         <ul>
-          <li><a href="../topics/topic1.html">Topic 1</a></li>
-          <li><a href="../topics/topic2.html">Topic 2</a></li>
-          <li><a href="../topics/topic3.html">Topic 3</a></li>
-          <li><a href="../topics/topic4.html">Topic 4</a></li>
-          <li><a href="../topics/topic5.html">Topic 5</a></li>
-          <li><a href="../topics/topic6.html">Topic 6</a></li>
-          <li><a href="../topics/topic7.html">Topic 7</a></li>
-          <li><a href="../topics/topic8.html">Topic 8</a></li>
-          <li><a href="../topics/topic9.html">Topic 9</a></li>
+          <li><a href="../apps/urban-planning.html">Urban Planning</a></li>
+          <li><a href="../apps/3d-campus.html">3D Campus</a></li>
+          <li><a href="../apps/strategic-plan.html">Strategic Plan</a></li>
         </ul>
       </div>
       <div id="title">
         <h1>Import</h1>
+        <h3>The University of Melbourne</h3>
+        <form class="search_bar" action="index.html" method="get">
+          <input type="text" name="key_words" value="">
+          <button type="button" name="search-button"></button>
+        </form>
       </div>
     </header>
 
@@ -73,21 +75,15 @@
           <h2>Please add infos to your data</h2>
           <p>Article title</p>
           <input type="text" id="in_title" class="in_form">
-          <p>Choose the topic</p>
-          <select id="in_topic">
-            <option value="Topic 1">Topic 1</option>
-            <option value="Topic 2">Topic 2</option>
-            <option value="Topic 3">Topic 3</option>
-            <option value="Topic 4">Topic 4</option>
-            <option value="Topic 5">Topic 5</option>
-            <option value="Topic 6">Topic 6</option>
-            <option value="Topic 7">Topic 7</option>
-            <option value="Topic 8">Topic 8</option>
-            <option value="Topic 9">Topic 9</option>
+          <p>Choose the apps</p>
+          <select id="in_apps">
+            <option value="apps 1">Urban Planning</option>
+            <option value="apps 2">3D Campus</option>
+            <option value="apps 3">Strategic Plan</option>
           </select>
           <p>Write some content</p>
           <input type="text" id="in_content" class="in_form">
-          <label id="upload_label">Importer ZIP<input id="upload_button" type="file" /></label>
+          <label id="upload_label">Import ZIP<input id="upload_button" type="file" /></label>
         </article>
         <div id="drag_zone">
         </div>
@@ -99,11 +95,11 @@
     <footer>
       <div id="essential">
         <ul>
-          <li><a href="../nav/about.html">About Us</a></li>
-          <li><a href="../nav/privacy.html">Privacy Statement</a></li>
-          <li><a href="../nav/site-terms.html">Website Terms of Use</a></li>
-          <li><a href="../nav/open-data-licence.html">Open Data Licence</a></li>
-          <li><a href="../nav/developer.html">Developer Guide</a></li>
+          <li><a href="nav/contact.html">Contact Us</a></li>
+          <li><a href="nav/privacy.html">Privacy Statement</a></li>
+          <li><a href="nav/site-terms.html">Website Terms of Use</a></li>
+          <li><a href="nav/open-data-licence.html">Open Data Licence</a></li>
+          <li><a href="nav/team.html">Team</a></li>
         </ul>
       </div>
       <div id="credits">

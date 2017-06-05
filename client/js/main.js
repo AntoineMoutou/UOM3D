@@ -4,11 +4,11 @@
 * @requires JSZip {@link https://stuk.github.io/jszip/}
 */
 
-function Building(name,title,topic,content){
+function Building(name,title,apps,content){
   this.name = name;
   this.zip_uint8array;
   this.title = title;
-  this.topic = topic;
+  this.apps = apps;
   this.content = content;
   this.url = "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title="+this.title+"&batchSize=1&latitude=-37.7952976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252F"+this.name+"%252F"+this.name+".json%26name%3DUoM_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200";
 }
@@ -71,10 +71,10 @@ function main() {
           json_response.articles.forEach(function(element){
             var name = element.name;
             var title = element.title;
-            var topic = element.topic;
+            var apps = element.apps;
             var content = element.content;
 
-            var temp_building = new Building(name,title,topic,content);
+            var temp_building = new Building(name,title,apps,content);
             building_list.push(temp_building);
           });
         }
@@ -120,9 +120,7 @@ function main() {
   */
   function document_select(e){
     if(busy){ return; }
-    console.log("cool");
     var file = DOM_upload_button.files[0];
-    console.log("cool");
     DOM_upload_button.value = "";
     e.dataTransfer = null;
     handle_file(file);
@@ -154,16 +152,12 @@ function main() {
         kml_file = zip.file(/.kml$/i)[0];
 
         var tmp_title = document.getElementById("in_title").value;
-        var tmp_topic = document.getElementById("in_topic").options[document.getElementById("in_topic").selectedIndex].value;
+        var tmp_apps = document.getElementById("in_apps").options[document.getElementById("in_apps").selectedIndex].value;
         var tmp_content = document.getElementById("in_content").value;
 
-        console.log(tmp_title);
-        console.log(tmp_topic);
-        console.log(tmp_content);
+        if (tmp_title && tmp_apps && tmp_content){
 
-        if (tmp_title && tmp_topic && tmp_content){
-
-          var building = new Building(json_file.name.split(".")[0],tmp_title,tmp_topic,tmp_content);
+          var building = new Building(json_file.name.split(".")[0],tmp_title,tmp_apps,tmp_content);
 
           for (var i = 0; i < building_list.length; i++) {
             if(building_list[i].equalTo(building)){
@@ -218,7 +212,7 @@ function main() {
     form.append('zip',building.zip_uint8array);
 
     form.append('title',building.title);
-    form.append('topic',building.topic);
+    form.append('apps',building.apps);
     form.append('content',building.content);
     form.append('url',building.url);
 
