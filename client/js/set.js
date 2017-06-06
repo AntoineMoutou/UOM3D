@@ -17,6 +17,7 @@ window.onload = function() {
   var page_name = document.getElementById("info-page").innerHTML
 
   var DOM_section = document.querySelectorAll("section");
+  var DOM_aside = document.querySelectorAll("aside");
 
   /**
   * @function
@@ -112,6 +113,7 @@ window.onload = function() {
       var p = document.createElement("p");
 
       p.innerHTML = content;
+      p.classList.add("bottom_content");
       a.innerHTML = "Visualize";
       a.href = url;
       a.setAttribute("class", "master_link");
@@ -206,6 +208,10 @@ window.onload = function() {
             }//end of function
           );//end of forEach
           }//end of else if (page_name == "index")
+          else if (page_name == "import") {
+            DOM_section[0].style.width = "60%";
+            DOM_aside[0].style.width = "40%";
+          }//end of else if (page_name == "import")
         }//end of else
       }//end of if(xhr.readyState == 4 && xhr.status == 200)
       else if(xhr.readyState == 4 && xhr.status != 200){
