@@ -1,167 +1,172 @@
-html,body,a,p,h1,h2,h3,a,ul,li,header,section,article,footer{
+html,body,a,p,h1,h2,h3,a,ul,li,header,section,aside,article,footer,input,button{
   margin: 0px;
   padding : 0px;
+  border: none;
 }
 html{
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-;
+  color: black;
 }
 a{
   text-decoration: none;
-  color: white;
-  display: block;
+  color: black;
 }
-ul{
-  margin: 0px 5px 0px 5px;
+p{
+  text-align: justify;
 }
 li{
   list-style-type: none;
-  margin: 0px 5px 0px 5px;
 }
-input{
-  margin: 0px;
-  padding: 0px;
-  border: none;
+a:hover{
+  color: orange;
 }
-button{
-  margin: 0px;
-  padding: 0px;
-  border: none;
+#info-page{
+  display: none;
 }
 
-header{
+html,body,header,footer{
   width: 100%;
-  background-color: #0a2c4f;
+}
+header{
+  color:white;
+
+  background-color: #012E55;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+header a{
+  color: white;
+  display: block;
+}
 nav{
   width: 100%;
-  background-color: #0a2c4f;
 
-  display:flex;
+  font-size: 1.5em;
+
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-#nav-left{
+nav ul{
+  width: 100%;
+
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
-#nav-right{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
+nav li{
+  text-align: center;
+  vertical-align: middle;
+}
+nav li li{
+  width: 20%;
+  white-space: nowrap;
 }
 #logo-csdila{
-  height: 5em;
-  width: 3em;
 
-  background-image: url("../img/csdila-logo.png");
+  height: 100px;
+  width: 100px;
+
+  background-image: url("../img/logo-csdila.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-}
-#home{
-  font-size: 2em;
 }
 #nav_apps:hover{
   color: orange;
   cursor: pointer;
 }
-#apps{
-  background-color: #0a2c4f;
-  display: none;
-  margin-top: 0px;
-  margin-bottom: 15px;
-}
-#apps ul{
-  height: 100%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-#apps li{
-  height: 100%;
-  color: white;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-nav ul{
-  height: 100%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-nav li{
-  height: 100%;
-  color: white;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 #logo-unimelb{
-  height: 4em;
-  width: 3.5em;
+
+  height: 100px;
+  width: 100px;
 
   background-image: url("../img/unimelb-logo.jpg");
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#apps{
+  width: 100%;
+
+  display: none;
+
+  background-color: #012E55;
+}
+#apps ul{
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+#apps li{
+  width: 20%;
+
+  text-align: center;
+  vertical-align: middle;
 }
 #title{
   width: 100%;
   height: 400px;
-  background-color: #0a2c4f;
-  /*background-image: url("../img/header_img.jpg");*/
+
+  background-color: #012E55;
   background-position: center;
   background-repeat: no-repeat;
-  color: white;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#title h1{
+  height: 50%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-}
-#title h1{
-  font-size: 4em;
+  font-size: 3em;
   font-style: italic;
   font-weight: normal;
   font-variant: normal;
   font-stretch: normal;
   text-align: center;
-  margin: 20px;
 
   text-shadow: 3px 3px #000000;
 }
 #title h3{
+  height: 20%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
   font-size: 1.5em;
-  margin: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-stretch: normal;
 
   text-shadow: 2px 2px #000000;
 }
 #title form{
   width: 50%;
-  margin: 20px;
+  height: 30%;
 
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
 }
 #title input{
   color: black;
@@ -188,10 +193,13 @@ nav li{
   cursor: pointer;
 }
 
+
 main{
-  background-color: #DDDDDD;
+  width: 100%;
+
+  background-color: #CCCCCC;
+
   color: black;
-  text-align: justify;
 
   display: flex;
   flex-direction: row;
@@ -199,18 +207,22 @@ main{
   align-items: flex-start;
 }
 section{
-  background-color: #DDDDDD;
-  height: 100%;
+  background-color: #CCCCCC;
+
   margin: 20px;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 aside{
-  background-color: #DDDDDD;
-  height: 100%;
+  width: 40%;
+
+  background-color: #CCCCCC;
+
   margin: 20px;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -219,16 +231,12 @@ aside{
 article{
   background-color: #FFFFFF;
 
-  width:100%;
-  margin: 20px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
 .home{
-  color: black;
   font-size: 2em;
   font-weight: bold;
 }
@@ -242,17 +250,99 @@ article{
 .master_link{
   text-align: center;
   padding: 5px;
-  background-color: #DDDDDD;
+  background-color: #CCCCCC;
   border: solid 2px black;
   color: black;
 }
 
 .contact{
-  background-color: #DDDDDD;
+  width: 25%;
+  background-color: #CCCCCC;
+}
+.contact h2{
+  margin-bottom: 5px;
+}
+.contact p{
+  margin-top: 5px;
 }
 .contact a{
   display: inline;
   color : black;
+}
+.contact-title{
+  color: #333333;
+}
+
+.box1{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.box2{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.box3{
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+@media screen and (max-width: 1000px) {
+  .box1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  .box2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  .box3{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  .contact{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .box1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  .box2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  .box3{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  .contact{
+    width: 100%;
+  }
 }
 
 #example{
@@ -283,25 +373,30 @@ article{
 #drag_zone{
   height: 300px;
   width: 100%;
-  background-color: #DDDDDD;
+  background-color: #CCCCCC;
   border: solid 2px grey;
   border-radius: 5px;
 }
 
-footer{
-  width: 100%;
 
+footer{
   color: white;
-  background-color: #0a2c4f;
+  background-color: #012E55;
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-end;
+}
+footer a{
+  color: white;
+  display: block;
 }
 #essential,#go_up{
   width: 20%;
-  margin: 20px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 #credits{
   display: flex;
@@ -312,10 +407,8 @@ footer{
   margin-bottom: 20px;
 }
 #go_up{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  text-align: right;
+  vertical-align: bottom;
 }
 
 #loader{
@@ -380,10 +473,6 @@ footer{
   font-weight: normal;
 }
 
-a:hover, #topics:hover{
-  color: orange;
-}
-
 @keyframes spin{
     0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg); }
     100%{ transform: rotate(360deg); -webkit-transform: rotate(360deg); }
@@ -398,6 +487,7 @@ a:hover, #topics:hover{
 }
 
 /*
-blue_UoM = #0a2c4f
-change css = 700px
+blue_UoM = #012E55
+grey     = #CCCCCC
+media    = 750px
 */

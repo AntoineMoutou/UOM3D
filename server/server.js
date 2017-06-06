@@ -28,12 +28,12 @@ const jsonfile      = require("jsonfile");
 function dezip(name) {
     fs.createReadStream('zip/' + name + '.zip').pipe(unzip.Extract({ path: 'data/'+name }));
     console.log("Extracted " + 'zip/' + name + '.zip' + " in folder data/"+name+".");
-}
+}//end of function dezip
 
 var upload = multer( { limits:
   {
-    fieldNameSize: 999999999,
-    fieldSize: 999999999
+    fieldNameSize: 99999999999,
+    fieldSize: 99999999999
   }});
 
 /**
@@ -42,11 +42,13 @@ var upload = multer( { limits:
 * @return {Uint8Array} - This same string in Uint format
 */
 function convertBinaryStringToUint8Array(str) {
-  var arr = str.split(",").map(function (val) {
-	return Number(val);
-  })
+  var arr = str.split(",").map(
+    function (val) {
+	   return Number(val);
+   }//end of function
+ )//end of map
   return new Uint8Array(arr)
-}
+}//end of convertBinaryStringToUint8Array
 
 app.get('*',function(req,res){
 
@@ -62,9 +64,9 @@ app.get('*',function(req,res){
 
 		else{
 			res.send(data);
-		}
+		}//end of else
 	});
-});
+});//end of app.get
 
 app.post('/',upload.single('zip'), function (req, res, next) {
 
@@ -99,34 +101,44 @@ app.post('/',upload.single('zip'), function (req, res, next) {
             res.send("data_saved");
         });
       });
-  }
+  }//end of function save
 
-function edit_json(name,title,apps,content,url) {
-  console.log("cool",content);
-  var add_data = JSON.parse('{"title":"'+title+'","apps":"'+apps+'","name":"'+name+'","content":"'+content+'","url":"'+url+'"}');
+/**
+* @function
+* @name edit_json
+* @description Add an article to articles.json
+* @param name {str} - The name of the data
+* @param title {str} - The title of the article
+* @param apps {str} - The apps of the article
+* @param content {str} - The content of the article
+* @param url {str} - The url of the data visualization
+*/
+  function edit_json(name,title,apps,content,url) {
 
-  var old_file = 'articles/articles.json';
-  var old_data = '';
-  jsonfile.readFile(old_file,'utf8',function(err,obj) {
-    if (err) throw err;
-    else {
-      old_data = obj;
-      old_data.articles.push(add_data);
-      jsonfile.writeFile(old_file,old_data),function(err) {
-        if (err) throw err;
-      }
-    }
-  })
-}
+    var add_data = JSON.parse('{"title":"'+title+'","apps":"'+apps+'","name":"'+name+'","content":"'+content+'","url":"'+url+'"}');
+
+    var old_file = 'articles/articles.json';
+    var old_data = '';
+    jsonfile.readFile(old_file,'utf8',function(err,obj) {
+      if (err) throw err;
+      else {
+        old_data = obj;
+        old_data.articles.push(add_data);
+        jsonfile.writeFile(old_file,old_data),function(err) {
+          if (err) throw err;
+        }
+      }//end of else
+    })
+  }// end of function edit_json
 
   if (typeof(req.body.zip) !== 'undefined'){
       data = convertBinaryStringToUint8Array(req.body.zip);
       save(data,name,title,apps,content,url);
-  }
+  }// end of if (typeof(req.body.zip) !== 'undefined')
   else {
     send("error");
-  }
-});
+  }//end of else
+});//end of app.post
 
 app.listen(8080);
 console.log("Server open at http://127.0.0.1:8080/");

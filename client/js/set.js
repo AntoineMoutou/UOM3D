@@ -14,12 +14,9 @@ window.onload = function() {
   DOM_maj.innerHTML = "Jun 05.2017";
 
   var DOM_title = document.getElementById("title");
-  var page_name = document.location.href
-  page_name = page_name.substring(page_name.lastIndexOf("/")+1);
-  page_name = page_name.substring(0,page_name.length-5)
+  var page_name = document.getElementById("info-page").innerHTML
 
   var DOM_section = document.querySelectorAll("section");
-  console.log(DOM_section);
 
   /**
   * @function
@@ -34,11 +31,10 @@ window.onload = function() {
 
     if (page_name == "import"){
       main();
-    }
+    } //end of if (page_name == "import")
 
     set_content();
-
-  }
+  } //end of function set_page
 
   /**
   * @function
@@ -47,36 +43,36 @@ window.onload = function() {
   */
   function set_header_background() {
     if (page_name == "index"){
-      DOM_title.style.backgroundImage = 'url("img/home-bg.jpg")';
-    }
-    else if(page_name == "3d-campus"){
-      DOM_title.style.backgroundImage = 'url("../img/campus-bg.jpg")'
-    }
-    else if(page_name == "strategic-plan"){
-      DOM_title.style.backgroundImage = 'url("../img/strategic-bg.jpg")'
-    }
-    else if(page_name == "urban-planning"){
-      DOM_title.style.backgroundImage = 'url("../img/urban-bg.jpg")'
-    }
-    else if(page_name == "contact"){
-      DOM_title.style.backgroundImage = 'url("../img/contact-bg.jpg")'
-    }
+      DOM_title.style.backgroundImage = 'url("img/index-bg.jpg")';
+    }//end of if (page_name == "index")
+    else if(page_name == "apps1"){
+      DOM_title.style.backgroundImage = 'url("../img/apps1-bg.jpg")'
+    }//end of else if(page_name == "apps1")
+    else if(page_name == "apps2"){
+      DOM_title.style.backgroundImage = 'url("../img/apps2-bg.jpg")'
+    }//end of else if(page_name == "apps2")
+    else if(page_name == "apps3"){
+      DOM_title.style.backgroundImage = 'url("../img/app3-bg.jpg")'
+    }//end of else if(page_name == "apps3")
+    else if(page_name == "apps4"){
+      DOM_title.style.backgroundImage = 'url("../img/apps4-bg.jpg")'
+    }//end of else if(page_name == "apps4")
     else if(page_name == "import"){
       DOM_title.style.backgroundImage = 'url("../img/import-bg.jpg")'
-    }
+    }//end of else if(page_name == "import")
     else if(page_name == "open-data-licence"){
       DOM_title.style.backgroundImage = 'url("../img/licence-bg.jpg")'
-    }
+    }//end of else if(page_name == "open-data-licence")
     else if(page_name == "privacy"){
       DOM_title.style.backgroundImage = 'url("../img/privacy-bg.jpg")'
-    }
+    }//end of else if(page_name == "privacy")
     else if(page_name == "site-terms"){
       DOM_title.style.backgroundImage = 'url("../img/terms-bg.jpg")'
-    }
-    else if(page_name == "team"){
-      DOM_title.style.backgroundImage = 'url("../img/team-bg.jpg")'
-    }
-  }
+    }//end of else if(page_name == "site-terms")
+    else if(page_name == "contact"){
+      DOM_title.style.backgroundImage = 'url("../img/contact-bg.jpg")'
+    }//end of else if(page_name == "contact")
+  }//end of function set_header_background
 
   /**
   * @function
@@ -90,14 +86,22 @@ window.onload = function() {
     if (DOM_nav_apps.value){
       var dis = "flex";
       DOM_nav_apps.value = false;
-    }
+    }//end of if (DOM_nav_apps.value)
     else{
       var dis = "none";
       DOM_nav_apps.value = true;
-    }
+    }//end of else
     DOM_apps.style.display = dis;
-  }
+  }//end of function apps_listener
 
+  /**
+  * @function
+  * @name create_article
+  * @description Function that return an article element filled with a title, a content and a link
+  * @param title {str} title - The title of the article
+  * @param content {str} content - The content of the article
+  * @param url {str} url - The url that redirect us to the visualisation page of the data
+  */
   function create_article(title,content,url) {
 
       var article = document.createElement("article");
@@ -120,7 +124,7 @@ window.onload = function() {
       article.appendChild(p);
 
       return article;
-  }
+  }//end of function create_article
 
   /**
   * @function
@@ -135,12 +139,15 @@ window.onload = function() {
       if(xhr.readyState == 4 && xhr.status == 200){
         if(xhr.responseText == "undefined"){
           alert("Request error", 2000);
-        }
+        }//end of if(xhr.responseText == "undefined")
         else{
           var response = xhr.responseText;
           var json_response = JSON.parse(response);
 
-          if (page_name == "urban-planning" || page_name == "3d-campus" || page_name == "strategic-plan"){
+          if (page_name.substring(0,4) == "apps"){
+
+            DOM_section[0].style.width = '100%';
+
             json_response.articles.forEach(function(element){
               var title = element.title;
               var apps = element.apps;
@@ -150,82 +157,86 @@ window.onload = function() {
               if (page_name == apps){
                 var article = create_article(title,content,url);
                 DOM_section[0].appendChild(article);
-              }
-            });
-          }
-          else if (page_name == "index") {
-            var inv_articles = json_response.articles.reverse();
-            var b_urban = true;
-            var b_campus = true;
-            var b_strategic = true;
+              }//end of if (page_name == apps)
+            }//end of function
+          );//end of forEach
+          }//end of if (page_name.substring(0,4) == "apps")
+          else if (page_name == "index"){
 
-            inv_articles.forEach(function(element) {
+            var DOM_art1 = document.getElementById("art1");
+            var DOM_art2 = document.getElementById("art2");
+            var DOM_art3 = document.getElementById("art3");
+            var DOM_art4 = document.getElementById("art4");
+
+            var inv_articles = json_response.articles.reverse();
+            var b_1 = true;
+            var b_2 = true;
+            var b_3 = true;
+            var b_4 = true;
+
+            inv_articles.forEach(function(element){
               var title = element.title;
               var apps = element.apps;
               var content = element.content;
               var url = element.url;
 
-              if (apps == "urban-planning" && b_urban) {
+              if (apps == "apps1" && b_1) {
                 var article = create_article(title,content,url);
-                DOM_section[0].appendChild(article);
-                b_urban = false;
-              }
-              else if (apps == "3d-campus" && b_campus) {
+                DOM_art1.appendChild(article);
+                b_1 = false;
+              }//end of if (apps == "apps1" && b_1)
+              else if (apps == "apps2" && b_2) {
                 var article = create_article(title,content,url);
-
-                DOM_section[1].appendChild(article);
-                b_campus = false;
-              }
-              else if (apps == "strategic-plan" && b_strategic) {
+                DOM_art2.appendChild(article);
+                b_2 = false;
+              }//end of else if (apps == "apps2" && b_2)
+              else if (apps == "apps3" && b_3) {
                 var article = create_article(title,content,url);
-                DOM_section[2].appendChild(article);
-                b_strategic = false;
-              }
-              else if (!(b_urban ||  b_campus || b_strategic)) {
+                DOM_art3.appendChild(article);
+                b_3 = false;
+              }//end of else if (apps == "apps3" && b_3)
+              else if (apps == "apps4" && b_4) {
+                var article = create_article(title,content,url);
+                DOM_art4.appendChild(article);
+                b_4 = false;
+              }//end of else if (apps == "apps4" && b_4)
+              else if (!(b_1 ||  b_2 || b_3 || b_4)) {
                 return;
-              }
-            });
-
-          }
-          // else if (page_name == "index") {
-          //
-          //   var last = json_response.articles[json_response.articles.length-1];
-          //
-          //   var title = last.title;
-          //   var apps = last.apps;
-          //   var content = last.content;
-          //   var url = last.url;
-          //
-          //   var article = document.createElement("article");
-          //   var div = document.createElement("div");
-          //   div.classList.add("top_content");
-          //   var h2 = document.createElement("h2");
-          //   var a = document.createElement("a");
-          //   var p = document.createElement("p");
-          //
-          //   p.innerHTML = content;
-          //   a.innerHTML = "Visualize";
-          //   a.href = url;
-          //   a.setAttribute("class", "master_link");
-          //   a.setAttribute("target", "_blank");
-          //   h2.innerHTML = title;
-          //
-          //   div.appendChild(h2);
-          //   div.appendChild(a);
-          //   article.appendChild(div);
-          //   article.appendChild(p);
-          //   DOM_section[0].appendChild(article);
-          // }
-        }
-      }
+              }//end of else if (!(b_1 ||  b_2 || b_3 || b_4))
+            }//end of function
+          );//end of forEach
+          }//end of else if (page_name == "index")
+        }//end of else
+      }//end of if(xhr.readyState == 4 && xhr.status == 200)
       else if(xhr.readyState == 4 && xhr.status != 200){
         busy = false;
         alert("Servor error",2000);
-      }
-    };
+      }//end of else if(xhr.readyState == 4 && xhr.status != 200)
+    }//end of function;
     xhr.send();
-  }
+  }//end of function set_content
+
+  /**
+  * @function
+  * @name alert
+  * @description Display an alert text
+  * @param {String} text - The text to display
+  * @param {Integer} timeout - The diplay time
+  */
+  function alert(text,timeout=1500){
+    var div = document.createElement("div");
+    div.innerHTML = "<p>"+text+"</p>";
+    div.classList.add("alert");
+
+    document.body.appendChild(div);
+    window.setTimeout(function(){
+      div.style.opacity = "0";
+      window.setTimeout(function(){
+        document.body.removeChild(div);
+      }, 550);
+    }, timeout);
+  }//end of function alert
 
   set_page();
 
-}
+}// end of main function
