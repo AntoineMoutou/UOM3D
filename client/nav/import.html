@@ -7,12 +7,14 @@
     <meta name="keywords" content="Unimelb, 3D ,University of Melbourne, Buildings, 3dcitydb">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
     <link rel="shortcut icon" href="../img/mini-csdila-logo.ico">
     <link rel="stylesheet" href="../css/style.css">
 
     <script src="../js/jszip.min.js"></script>
 
-    <script src="../js/main.js"></script>
+    <script src="../js/import_data.js"></script>
     <script src="../js/set.js"></script>
 
     <title>Import</title>
@@ -46,6 +48,28 @@
           </li>
         </ul>
       </nav>
+      <div id="nav-res">
+        <div class="nav-res">
+          <label for="cb-nav"><img src="../img/menu-icon.png" alt="" id="icon-res"></label>
+          <h1>City Models Lab</h1>
+        </div>
+        <ul class="nav-res">
+          <input type="checkbox" id="cb-nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><label for="cb-apps">Apps</label></li>
+          <li><a href="../nav/import.html">Import</a></li>
+          <li><a href="../nav/contact.html">Contact Us</a></li>
+        </ul>
+        <ul>
+          <input type="checkbox" id="cb-apps">
+          <li><a href="../apps/statutory-planning.html"><img src="../img/statutory-icon.png" alt="statutory-icon" class="icon">Statutory Planning</a></li>
+          <li><a href="../apps/strategic-planning.html"><img src="../img/strategic-icon.png" alt="strategic-icon" class="icon">Strategic Planning</a></li>
+          <li><a href="../apps/smart-campus.html"><img src="../img/smart-icon.png" alt="smart-icon" class="icon">Smart Campus</a></li>
+          <li><a href="../apps/BIM-GIS-integration.html"><img src="../img/BIM-GIS-icon.png" alt="BIM-GIS-icon" class="icon">BIM/GIS Integration</a></li>
+        </ul>
+
+
+      </div>
       <div id="apps">
         <ul>
           <li><a href="../apps/statutory-planning.html">Statutory Planning</a></li>
@@ -60,35 +84,41 @@
     </header>
 
     <main>
-      <section>
-        <article>
-          <h2>Import your data</h2>
-          <p>Your data must be zipped.</p>
-          <p>The .zip must contain : the json file, the main kml file and the folder "Tiles"</p>
-          <p>For example :</p>
-        </article>
-        <div id="example"></div>
-      </section>
-      <aside>
-        <article>
-          <h2>Please add infos to your data</h2>
-          <p>Article title</p>
-          <input type="text" id="in_title" class="in_form">
-          <p>Choose the apps</p>
-          <select id="in_apps">
-            <option value="apps1">Statutory Planning</option>
-            <option value="apps2">Strategic Planning</option>
-            <option value="apps3">Smart Campus</option>
-            <option value="apps4">BIM/GIS Integration</option>
-          </select>
-          <p>Write some content</p>
-          <input type="text" id="in_content" class="in_form">
-          <label id="upload_label">Import ZIP<input id="upload_button" type="file" /></label>
-        </article>
-        <div id="drag_zone">
-          <p>Drag &amp; Drop Here !</p>
-        </div>
-      </aside>
+      <div class="box2">
+        <section>
+          <article>
+            <h2>Import your data</h2>
+            <p>Your data must be zipped.</p>
+            <p>The .zip must contain : the json file, the main kml file and the folder "Tiles"</p>
+            <p>For example :</p>
+            <img src="../img/example.jpg" alt="example" id=example>
+          </article>
+
+        </section>
+        <aside>
+          <article>
+            <h2>Please add infos to your data</h2>
+            <p>Article title</p>
+            <input type="text" id="in_title" class="in_form">
+            <p>Choose the apps</p>
+            <select id="in_apps" value="">
+              <option value="apps1">Statutory Planning</option>
+              <option value="apps2">Strategic Planning</option>
+              <option value="apps3">Smart Campus</option>
+              <option value="apps4">BIM/GIS Integration</option>
+            </select>
+            <p>Add some tags</p>
+            <input type="text" id="in_tags" class="in_form">
+            <p>Write some content</p>
+            <input type="text" id="in_content" class="in_form">
+            <label id="upload_label">Import ZIP<input id="upload_button" type="file" /></label>
+          </article>
+
+        </aside>
+      </div>
+      <div id="drag_zone">
+        <p>Drag &amp; Drop Here !</p>
+      </div>
     </main>
 
     <div id="loader"></div>

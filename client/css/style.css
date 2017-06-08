@@ -5,10 +5,16 @@ html,body,a,p,h1,h2,h3,a,ul,li,header,section,aside,article,footer,input,button{
 }
 html{
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 300;
   color: black;
-  min-width: 400px;
+  min-width: 300px;
+}
+body{
+  background-color: #CCCCCC;
 }
 a{
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 300;
   text-decoration: none;
   color:black;
 }
@@ -28,10 +34,13 @@ a:hover{
 html,body,header,footer{
   width: 100%;
 }
+
 header{
   color:white;
 
   background-color: #012E55;
+
+  margin-bottom: 20px;
 
   display: flex;
   flex-direction: column;
@@ -40,12 +49,15 @@ header{
 }
 header a{
   color: white;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 nav{
   width: 100%;
 
-  font-size: 1.5em;
+  font-size: 1.2em;
 
   display: flex;
   flex-direction: row;
@@ -69,6 +81,7 @@ nav li{
 }
 nav li li a,nav label{
   margin-left: 10px;
+  margin-right: 10px;
   white-space:nowrap;
 }
 #logo-csdila{
@@ -80,6 +93,13 @@ nav li li a,nav label{
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+#nav-res {
+  width: 100%;
+  display: none;
+}
+#nav_apps{
+  display: none; /* remove that to set the apps bar*/
 }
 #nav_apps:hover{
   color: orange;
@@ -97,6 +117,9 @@ nav li li a,nav label{
 }
 #apps{
   width: 100%;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
 
   display: none;
 
@@ -127,43 +150,43 @@ nav li li a,nav label{
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 #title h1{
-  height: 50%;
+  height: 40%;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
   font-size: 3em;
-  font-style: italic;
-  font-weight: normal;
+  font-style: normal;
+  font-weight: 300;
   font-variant: normal;
   font-stretch: normal;
   text-align: center;
 
-  text-shadow: 3px 3px #000000;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 #title h3{
-  height: 20%;
+  height: 30%;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 300;
   font-variant: normal;
   font-stretch: normal;
 
-  text-shadow: 2px 2px #000000;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
-#title form{
+#search-bar{
   width: 50%;
   height: 30%;
 
@@ -209,9 +232,9 @@ main{
   align-items: flex-start;
 }
 section{
-  background-color: #CCCCCC;
+  width: 50%;
 
-  margin: 20px;
+  background-color: #CCCCCC;
 
   display: flex;
   flex-direction: column;
@@ -219,9 +242,9 @@ section{
   align-items: center;
 }
 aside{
-  background-color: #CCCCCC;
+  width: 50%;
 
-  margin: 20px;
+  background-color: #CCCCCC;
 
   display: flex;
   flex-direction: column;
@@ -232,7 +255,13 @@ article{
   width: 90%;
   height: 90%;
 
+  margin: 20px;
+
   background-color: #FFFFFF;
+
+  border-radius: 5px;
+
+  font-size: 0.9em;
 
   display: flex;
   flex-direction: column;
@@ -241,13 +270,48 @@ article{
 article h2,article p,article input,article select{
   margin: 5px;
 }
-
-.home{
-  font-size: 1.7em;
-  font-weight: bold;
-  font-style: normal;
-  font-weight: normal;
+article h2{
+  font-size: 1.3em;
+  font-weight: 300;
 }
+article span{
+  margin: 5px;
+}
+
+.icon{
+  width: 100px;
+  height: 100px;
+}
+
+#h-1{
+  background-image: url("../img/statutory-icon2.png");
+}
+#h-2{
+  background-image: url("../img/strategic-icon2.png");
+}
+#h-3{
+  background-image: url("../img/smart-icon2.png");
+}
+#h-4{
+  background-image: url("../img/BIM-GIS-icon2.png");
+}
+.home{
+  width: 90%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  text-align: center;
+
+  font-size: 1.6em;
+
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .top_content{
   margin: 5px;
   display: flex;
@@ -260,15 +324,19 @@ article h2,article p,article input,article select{
 }
 .master_link{
   border: solid 2px black;
+  border-radius: 5px;
   padding: 5px;
   text-align: center;
   background-color: #CCCCCC;
   color: black;
 }
-
-.contact{
-  background-color: #CCCCCC;
+.div-tags{
+  margin: 5px;
+  font-size: 0.7em;
+  font-weight: 400;
+  color: #333333;
 }
+
 .contact a{
   display: inline;
   margin: 5px;
@@ -301,65 +369,14 @@ article h2,article p,article input,article select{
   justify-content: space-around;
   align-items: center;
 }
-@media screen and (max-width: 1000px) {
-  .box1{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .box2{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-  .box3{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
-@media screen and (max-width: 600px) {
-  .box1{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .box2{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .box3{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
+
 
 #example{
-  width: 100%;
-  height: 400px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
 
-  margin-top: 20px;
-
-  background-image: url(../img/example.jpg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  margin: 5px;
 }
 .in_form{
   border: solid 1px #B0B0B0;
@@ -381,9 +398,10 @@ article h2,article p,article input,article select{
 }
 #drag_zone{
   height: 300px;
-  width: 100%;
+  width: 90%;
 
   margin-top: 20px;
+  margin-bottom: 20px;
 
   color: grey;
   font-size: 2em;
@@ -394,7 +412,6 @@ article h2,article p,article input,article select{
   align-items: center;
 
   background-color: #FFFFFF;
-  /*border: solid 2px #333333;*/
   border-radius: 5px;
 }
 
@@ -402,6 +419,8 @@ article h2,article p,article input,article select{
 footer{
   color: white;
   background-color: #012E55;
+
+  margin-top: 20px;
 
   display: flex;
   flex-direction: row;
@@ -427,8 +446,10 @@ footer a{
   margin-bottom: 20px;
 }
 #go_up{
-  text-align: right;
-  vertical-align: bottom;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 #loader{
@@ -493,6 +514,140 @@ footer a{
   font-weight: normal;
 }
 
+@media screen and (max-width: 1000px) {
+  .box1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .box2{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  .box3{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 600px) {
+  .box1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .box2{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .box3{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  nav, #apps, title{
+    display: none;
+  }
+
+  #nav-res{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #nav-res li{
+    display: none;
+  }
+  .nav-res{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top:10px;
+  }
+  #icon-res{
+    width: 40px;
+    height: 40px;
+  }
+
+  #cb-nav,#cb-apps{
+    display:none;
+  }
+  #nav-res h1{
+    font-weight: 300;
+    font-size: 2em;
+  }
+  #cb-nav:checked ~ li{
+    display: flex;
+  }
+  #cb-apps:checked ~ li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  section, aside{
+    width: 100%;
+  }
+  #drag_zone{
+    display: none;
+  }
+
+  footer{
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #essential,#credits{
+    width: 100%;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #go_up{
+    width: auto;
+
+    position:fixed;
+    bottom: 5px;
+    right: 5px;
+
+    border: solid 2px black;
+    border-radius: 5px;
+
+    background-color: #012E55;
+
+    margin: 0;
+    padding: 5px;
+  }
+}
+
+
 @keyframes spin{
     0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg); }
     100%{ transform: rotate(360deg); -webkit-transform: rotate(360deg); }
@@ -509,5 +664,4 @@ footer a{
 /*
 blue_UoM = #012E55
 grey     = #CCCCCC
-media    = 750px
 */

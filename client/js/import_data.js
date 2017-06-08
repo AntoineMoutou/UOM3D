@@ -1,6 +1,6 @@
 /**
 * @fileOverview Script côté client pour gérer l'upload des fichiers, et l'interface utilisateur
-* @author Antoine Moutou <antoinem@student.unimelb.au>
+* @author Antoine Moutou <antoinem@student.unimelb.edu.au>
 * @requires JSZip {@link https://stuk.github.io/jszip/}
 */
 
@@ -20,7 +20,7 @@ Building.prototype.equalTo = function(building){
   return false;
 }//end of function
 
-function main() {
+function import_data() {
 
   var zip;
   var building_list = [];
@@ -124,6 +124,7 @@ function main() {
   function document_select(e){
     if(busy){ return; }//end of if(busy)
     var file = DOM_upload_button.files[0];
+    console.log(file);
     DOM_upload_button.value = "";
     e.dataTransfer = null;
     handle_file(file);
@@ -138,9 +139,9 @@ function main() {
   function handle_file(file){
     busy = true;
     loader.style.display = "block";
-
     JSZip.loadAsync(file).then(
       function(zip){
+
         var type, idx, file_types = ['json', 'kml'];
 
         zip.forEach(function(relativePath, zipEntry) {    // parcours le ZIP pour vérifier chaque fichier
@@ -180,6 +181,7 @@ function main() {
               function success(content) {
                 building.zip_uint8array = content;
                 busy = false;
+                console.log("cool 1");
                 upload_file(building);
               },//end of function success
               function error(e) {
@@ -208,7 +210,6 @@ function main() {
   * @description Send the zip file to the server
   */
   function upload_file(building){
-
     if(building == null){
       alert("No inported files", 1500);
       return;
@@ -219,9 +220,12 @@ function main() {
     loader.style.display = "block";
 
     var form = new FormData();
+    console.log(form);
+    console.log("test");
     form.append('name', building.name);
+    console.log(form);
     form.append('zip',building.zip_uint8array);
-
+    console.log(form);
     form.append('title',building.title);
     form.append('apps',building.apps);
     form.append('content',building.content);
@@ -229,6 +233,7 @@ function main() {
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://127.0.0.1:8080/", true);
+
 
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200){

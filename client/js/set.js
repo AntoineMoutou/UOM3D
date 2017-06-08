@@ -1,7 +1,58 @@
 /**
 * @fileOverview Script côté client pour gérer l'interface utilisateur
-* @author Antoine Moutou <antoinem@student.unimelb.au>
+* @author Antoine Moutou <antoinem@student.unimelb.edu.au>
 */
+
+/**
+* @function
+* @name create_article
+* @description Function that return an article element filled with a title, a content, some tags and a link
+* @param title {str} title - The title of the article
+* @param content {str} content - The content of the article
+* @param url {str} url - The url that redirect us to the visualisation page of the data
+* @param tags {array} tags - The array that contains the tagsof the article
+*/
+function create_article(title,content,url,tags) {
+
+    var article = document.createElement("article");
+    var div = document.createElement("div");
+    var div2 = document.createElement("div");
+    div.classList.add("top_content");
+    div2.classList.add("div-tags");
+    var h2 = document.createElement("h2");
+    var a = document.createElement("a");
+    var p = document.createElement("p");
+
+    p.innerHTML = content;
+    p.classList.add("bottom_content");
+    a.innerHTML = "Launch";
+    a.href = url;
+    a.setAttribute("class", "master_link");
+    a.setAttribute("target", "_blank");
+    h2.innerHTML = title;
+
+    /*To print the tags in the articles*/
+
+    /*
+    tag_title = document.createElement("span");
+    tag_title.innerHTML = "TAGS :";
+    div2.appendChild(tag_title);
+
+    tags.forEach(function(tag){
+      var span = document.createElement("span");
+      span.innerHTML = tag;
+      div2.appendChild(span);
+    })//end of forEach
+  */
+
+    div.appendChild(h2);
+    div.appendChild(a);
+    article.appendChild(div);
+    article.appendChild(p);
+    article.appendChild(div2);
+
+    return article;
+}//end of function create_article
 
 window.onload = function() {
 
@@ -10,8 +61,11 @@ window.onload = function() {
 
   var DOM_apps = document.getElementById("apps");
 
+  var DOM_search = document.getElementById("search-button");
+  var DOM_search_text_area = document.querySelector("#title input");
+
   var DOM_maj = document.getElementById("maj");
-  DOM_maj.innerHTML = "Jun 05.2017";
+  DOM_maj.innerHTML = "Jun 08.2017";
 
   var DOM_title = document.getElementById("title");
   var page_name = document.getElementById("info-page").innerHTML
@@ -30,11 +84,20 @@ window.onload = function() {
 
     DOM_nav_apps.addEventListener("click",apps_listener, false);
 
+    if (page_name == "search" || page_name == "index" || page_name.substring(0,4) == "apps") {
+      DOM_search.addEventListener("click",open_search, false);
+      DOM_search_text_area.addEventListener("keydown",keydown, false);
+    }//end of if (page_name == "search" || page_name == "index" || page_name.substring(0,4) == "apps")
+
     if (page_name == "import"){
-      main();
+      import_data();
     } //end of if (page_name == "import")
 
     set_content();
+
+    if (page_name == "search") {
+      search();
+    }//end of else if (page_name == "search")
   } //end of function set_page
 
   /**
@@ -46,33 +109,6 @@ window.onload = function() {
     if (page_name == "index"){
       DOM_title.style.backgroundImage = 'url("img/index-bg.jpg")';
     }//end of if (page_name == "index")
-    else if(page_name == "apps1"){
-      DOM_title.style.backgroundImage = 'url("../img/apps1-bg.jpg")'
-    }//end of else if(page_name == "apps1")
-    else if(page_name == "apps2"){
-      DOM_title.style.backgroundImage = 'url("../img/apps2-bg.jpg")'
-    }//end of else if(page_name == "apps2")
-    else if(page_name == "apps3"){
-      DOM_title.style.backgroundImage = 'url("../img/app3-bg.jpg")'
-    }//end of else if(page_name == "apps3")
-    else if(page_name == "apps4"){
-      DOM_title.style.backgroundImage = 'url("../img/apps4-bg.jpg")'
-    }//end of else if(page_name == "apps4")
-    else if(page_name == "import"){
-      DOM_title.style.backgroundImage = 'url("../img/import-bg.jpg")'
-    }//end of else if(page_name == "import")
-    else if(page_name == "open-data-licence"){
-      DOM_title.style.backgroundImage = 'url("../img/licence-bg.jpg")'
-    }//end of else if(page_name == "open-data-licence")
-    else if(page_name == "privacy"){
-      DOM_title.style.backgroundImage = 'url("../img/privacy-bg.jpg")'
-    }//end of else if(page_name == "privacy")
-    else if(page_name == "site-terms"){
-      DOM_title.style.backgroundImage = 'url("../img/terms-bg.jpg")'
-    }//end of else if(page_name == "site-terms")
-    else if(page_name == "contact"){
-      DOM_title.style.backgroundImage = 'url("../img/contact-bg.jpg")'
-    }//end of else if(page_name == "contact")
   }//end of function set_header_background
 
   /**
@@ -94,39 +130,6 @@ window.onload = function() {
     }//end of else
     DOM_apps.style.display = dis;
   }//end of function apps_listener
-
-  /**
-  * @function
-  * @name create_article
-  * @description Function that return an article element filled with a title, a content and a link
-  * @param title {str} title - The title of the article
-  * @param content {str} content - The content of the article
-  * @param url {str} url - The url that redirect us to the visualisation page of the data
-  */
-  function create_article(title,content,url) {
-
-      var article = document.createElement("article");
-      var div = document.createElement("div");
-      div.classList.add("top_content");
-      var h2 = document.createElement("h2");
-      var a = document.createElement("a");
-      var p = document.createElement("p");
-
-      p.innerHTML = content;
-      p.classList.add("bottom_content");
-      a.innerHTML = "Visualize";
-      a.href = url;
-      a.setAttribute("class", "master_link");
-      a.setAttribute("target", "_blank");
-      h2.innerHTML = title;
-
-      div.appendChild(h2);
-      div.appendChild(a);
-      article.appendChild(div);
-      article.appendChild(p);
-
-      return article;
-  }//end of function create_article
 
   /**
   * @function
@@ -155,9 +158,10 @@ window.onload = function() {
               var apps = element.apps;
               var content = element.content;
               var url = element.url;
+              var tags = element.tags;
 
               if (page_name == apps){
-                var article = create_article(title,content,url);
+                var article = create_article(title,content,url,tags);
                 DOM_section[0].appendChild(article);
               }//end of if (page_name == apps)
             }//end of function
@@ -181,24 +185,25 @@ window.onload = function() {
               var apps = element.apps;
               var content = element.content;
               var url = element.url;
+              var tags = element.tags;
 
               if (apps == "apps1" && b_1) {
-                var article = create_article(title,content,url);
+                var article = create_article(title,content,url,tags);
                 DOM_art1.appendChild(article);
                 b_1 = false;
               }//end of if (apps == "apps1" && b_1)
               else if (apps == "apps2" && b_2) {
-                var article = create_article(title,content,url);
+                var article = create_article(title,content,url,tags);
                 DOM_art2.appendChild(article);
                 b_2 = false;
               }//end of else if (apps == "apps2" && b_2)
               else if (apps == "apps3" && b_3) {
-                var article = create_article(title,content,url);
+                var article = create_article(title,content,url,tags);
                 DOM_art3.appendChild(article);
                 b_3 = false;
               }//end of else if (apps == "apps3" && b_3)
               else if (apps == "apps4" && b_4) {
-                var article = create_article(title,content,url);
+                var article = create_article(title,content,url,tags);
                 DOM_art4.appendChild(article);
                 b_4 = false;
               }//end of else if (apps == "apps4" && b_4)
@@ -209,8 +214,11 @@ window.onload = function() {
           );//end of forEach
           }//end of else if (page_name == "index")
           else if (page_name == "import") {
-            DOM_section[0].style.width = "60%";
-            DOM_aside[0].style.width = "40%";
+            //DOM_section[0].style.width = "60%";
+            //DOM_aside[0].style.width = "40%";
+            document.getElementsByClassName("box2")[0].style.width = "100%";
+            document.querySelector('main').style.flexDirection = "column";
+            document.querySelector('main').style.alignItems = "center";
           }//end of else if (page_name == "import")
         }//end of else
       }//end of if(xhr.readyState == 4 && xhr.status == 200)
@@ -221,6 +229,55 @@ window.onload = function() {
     }//end of function;
     xhr.send();
   }//end of function set_content
+
+  /**
+  * @function
+  * @name open_search
+  * @description Function that permits to redirect to search.html with some keywords in the url
+  * @listens DOM_search.click
+  * @param e {event} e - The listner triggered by the click
+  */
+  function open_search(e) {
+    e.preventDefault();
+
+    if (page_name == "index"){
+      var filled_url = "nav/search.html";
+    }//end of if (page_name == "index")
+    else if (page_name == "search"){
+      var filled_url = "../nav/search.html";
+    }//end of else if (page_name == "search")
+    else{
+      var filled_url = "../nav/search.html";//"../nav/"+page_name+".html";
+    }//end of else
+
+    filled_url += "?";
+
+    var words = document.getElementsByName("key_words")[0].value.toLowerCase();
+
+    if (words == ""){
+      alert("Type a word or more",2000);
+    }//end of if (words == "")
+    else {
+      var key_words = words.split("_").join("").split(" ").join("_");
+
+      filled_url = filled_url + page_name + "_" + key_words;
+
+      window.location.href = filled_url;
+    }//end of else
+  }//end of function open_search
+
+  /**
+  * @function
+  * @name keydown
+  * @description Function that permits to redirect to open_searchfunction
+  * @listens DOM_search_text_area.keydown
+  * @param e {event} e - The listner triggered by the keydown
+  */
+  function keydown(e) {
+    if(e.code == "Enter"){
+      open_search(e);
+    }//end of if(e.keycode ==13)
+  }//end of function keydown
 
   /**
   * @function

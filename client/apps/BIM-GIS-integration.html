@@ -7,6 +7,8 @@
     <meta name="keywords" content="Unimelb, 3D ,University of Melbourne, Buildings, 3dcitydb">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
     <link rel="shortcut icon" href="../img/mini-csdila-logo.ico">
     <link rel="stylesheet" href="../css/style.css">
 
@@ -43,6 +45,28 @@
           </li>
         </ul>
       </nav>
+      <div id="nav-res">
+        <div class="nav-res">
+          <label for="cb-nav"><img src="../img/menu-icon.png" alt="" id="icon-res"></label>
+          <h1>City Models Lab</h1>
+        </div>
+        <ul class="nav-res">
+          <input type="checkbox" id="cb-nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><label for="cb-apps">Apps</label></li>
+          <li><a href="../nav/import.html">Import</a></li>
+          <li><a href="../nav/contact.html">Contact Us</a></li>
+        </ul>
+        <ul>
+          <input type="checkbox" id="cb-apps">
+          <li><a href="../apps/statutory-planning.html"><img src="../img/statutory-icon.png" alt="statutory-icon" class="icon">Statutory Planning</a></li>
+          <li><a href="../apps/strategic-planning.html"><img src="../img/strategic-icon.png" alt="strategic-icon" class="icon">Strategic Planning</a></li>
+          <li><a href="../apps/smart-campus.html"><img src="../img/smart-icon.png" alt="smart-icon" class="icon">Smart Campus</a></li>
+          <li><a href="../apps/BIM-GIS-integration.html"><img src="../img/BIM-GIS-icon.png" alt="BIM-GIS-icon" class="icon">BIM/GIS Integration</a></li>
+        </ul>
+
+
+      </div>
       <div id="apps">
         <ul>
           <li><a href="../apps/statutory-planning.html">Statutory Planning</a></li>
@@ -54,10 +78,10 @@
       <div id="title">
         <h1>BIM/GIS Integration</h1>
         <h3>The University of Melbourne</h3>
-        <form class="search_bar" action="index.html" method="get">
+        <div id="search-bar">
           <input type="text" name="key_words" value="">
-          <button type="button" name="search-button"></button>
-        </form>
+          <button type="button" id="search-button"></button>
+        </div>
       </div>
     </header>
 

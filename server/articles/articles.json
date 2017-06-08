@@ -2,36 +2,42 @@
 	"articles": [{
 		"title": "Test 1",
 		"apps": "apps2",
+		"tags": ["tag4", "tag3"],
 		"name": "test1_collada_MasterJSON",
 		"content": "The file named test 1 is a building next to the university oval stadium. This building is a feature without any textures because the cityGML export is a geometry export. The master json is named test1_geometry. I must delete this file because we can have the textures now.",
 		"url": "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title=UOM3D_Demo&batchSize=1&latitude=-37.7952976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252Ftest1_collada_MasterJSON%252Ftest1_collada_MasterJSON.json%26name%3DUoM_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200"
 	}, {
 		"title": "Test 2",
 		"apps": "apps3",
+		"tags": ["tag5", "tag6"],
 		"name": "test2_collada_MasterJSON",
 		"content": "The file named test 2 is all the buildings of the university. These buildings are gather in one feature without any textures because the cityGML export is a geometry export. The master json is named test2_geometry. I must delete this file because we can have the textures and multi features now.",
 		"url": "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title=UOM3D_Demo&batchSize=1&latitude=-37.7947976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252Ftest2_collada_MasterJSON%252Ftest2_collada_MasterJSON.json%26name%3DBerlin_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200"
 	}, {
 		"title": "Test 3",
 		"apps": "apps4",
+		"tags": ["tag1", "tag5"],
 		"name": "test3_collada_MasterJSON",
 		"content": "The file named test 3 is some buildings in Berlin, Germany. These buildings are several features with textures because the cityGML export is a collada/Gltf export. The master json is named test3_collada. I must keep this file because it works very well.",
 		"url": "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title=UOM3D_Demo&batchSize=1&latitude=-37.7947976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252Ftest3_collada_MasterJSON%252Ftest3_collada_MasterJSON.json%26name%3DBerlin_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200"
 	}, {
 		"title": "Berlin",
 		"apps": "apps1",
+		"tags": ["tag2", "tag3"],
 		"name": "example_city_collada_MasterJSON",
 		"content": "The file named Berlin is some buildings in Berlin, Germany. These buildings are several features with textures because the cityGML export is a collada/Gltf export. The master json is named berlin1_collada. I must keep this file because it works very well.",
 		"url": "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title=reqh&batchSize=1&latitude=-37.7952976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252Fexample_city_collada_MasterJSON%252Fexample_city_collada_MasterJSON.json%26name%3DUoM_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200"
 	}, {
 		"title": "Mini Berlin",
 		"apps": "apps1",
+		"tags": ["tag2", "tag3"],
 		"name": "miniberlin_collada_MasterJSON",
 		"content": "The file named Mini Berlin is few buildings in Berlin, Germany. These buildings are several features with textures because the cityGML export is a collada/Gltf export. The master json is named miniberlin_collada. I must keep this file because it works very well.",
 		"url": "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title=Mini Berlin&batchSize=1&latitude=-37.7952976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252Fminiberlin_collada_MasterJSON%252Fminiberlin_collada_MasterJSON.json%26name%3DUoM_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200"
 	}, {
 		"title": "Mini Uni",
 		"apps": "apps3",
+		"tags": ["tag1", "tag3"],
 		"name": "miniuni_collada_MasterJSON",
 		"content": "The file named Mini Uni is a single building of the university. These buildings are several features with textures because the cityGML export is a collada/Gltf export. The master json is named miniunimelb_collada. I must keep this file because it works very well.",
 		"url": "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?title=Mini Uni&batchSize=1&latitude=-37.7952976&longitude=144.9610088&height=200&heading=0&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttp%253A%252F%252F127.0.0.1:8080%252Fdata%252Fminiuni_collada_MasterJSON%252Fminiuni_collada_MasterJSON.json%26name%3DUoM_Building%26active%3Dtrue%26spreadsheetUrl%3D%26cityobjectsJsonUrl%3D%26minLodPixels%3D%26maxLodPixels%3D%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200"
