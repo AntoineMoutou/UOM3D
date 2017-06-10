@@ -260,6 +260,10 @@ article{
   background-color: #FFFFFF;
 
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
 
   font-size: 0.9em;
 
@@ -324,7 +328,13 @@ article span{
 }
 .master_link{
   border: solid 2px black;
+
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+
   padding: 5px;
   text-align: center;
   background-color: #CCCCCC;
@@ -413,6 +423,10 @@ article span{
 
   background-color: #FFFFFF;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
 }
 
 
@@ -463,9 +477,16 @@ footer a{
   border: 5px solid transparent;
   border-top-color: red;
   border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
   z-index: 500000000;
   animation: spin 2s linear infinite;
 	-webkit-animation: spin 2s linear infinite;
+  -moz-animation: spin 2s linear infinite;
+  -o-animation: spin 2s linear infinite;
+  -ms-animation: spin 2s linear infinite;
 }
 #loader::before, #loader::after{
   content: '';
@@ -474,6 +495,11 @@ footer a{
   height: 100%;
   border: 5px solid transparent;
   border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+
 }
 #loader::before{
   top: -5px;
@@ -481,13 +507,19 @@ footer a{
   border-left-color: red;
   transform: rotateZ(-30deg);
   -webkit-transform: rotateZ(-30deg);
+  -moz-transform: rotateZ(-30deg);
+  -o-transform: rotateZ(-30deg);
+  -ms-transform: rotateZ(-30deg);
 }
 #loader::after{
   top: -5px;
   left: -5px;
   border-right-color: red;
   transform: rotateZ(30deg);
-  -webkit-transform: rotateZ(30deg);
+  -webkit-transform: rotateZ(-30deg);
+  -moz-transform: rotateZ(-30deg);
+  -o-transform: rotateZ(-30deg);
+  -ms-transform: rotateZ(-30deg);
 }
 
 .alert{
@@ -501,8 +533,14 @@ footer a{
   box-shadow: 0 3px 5px rgba(0,0,0,0.3);
   transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
   opacity: 1;
   z-index: 1000000000000000000000000000000000000000000000000000000000000000000000000000000;
 }
@@ -639,6 +677,10 @@ footer a{
 
     border: solid 2px black;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
 
     background-color: #012E55;
 
@@ -649,16 +691,24 @@ footer a{
 
 
 @keyframes spin{
-    0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg); }
-    100%{ transform: rotate(360deg); -webkit-transform: rotate(360deg); }
-}
-@-moz-keyframes spin{
-    0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg); }
-    100%{ transform: rotate(360deg); -webkit-transform: rotate(360deg); }
+    0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg);}
+    100%{ transform: rotate(360deg); -webkit-transform: rotate(360deg);}
 }
 @-webkit-keyframes spin{
-    0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg); }
-    100%{ transform: rotate(360deg); -webkit-transform: rotate(360deg); }
+    0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg);}
+    100%{ transform: rotate(360deg); -webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin{
+    0%{ transform: rotate(0deg); -moz-transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); -moz-transform: rotate(360deg); }
+}
+@-o-keyframes spin{
+    0%{ transform: rotate(0deg); -o-transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); -o-transform: rotate(360deg); }
+}
+@-ms-keyframes spin{
+    0%{ transform: rotate(0deg); -ms-transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); -ms-transform: rotate(360deg); }
 }
 
 /*
