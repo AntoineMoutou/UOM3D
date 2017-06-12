@@ -82,7 +82,6 @@ nav li{
 nav li li a,nav label{
   margin-left: 10px;
   margin-right: 10px;
-  white-space:nowrap;
 }
 #logo-csdila{
 
@@ -98,10 +97,10 @@ nav li li a,nav label{
   width: 100%;
   display: none;
 }
-#nav_apps{
+.nav_apps{
   display: none; /* remove that to set the apps bar*/
 }
-#nav_apps:hover{
+.nav_apps:hover{
   color: orange;
   cursor: pointer;
 }
@@ -600,7 +599,7 @@ footer a{
     align-items: center;
   }
 
-  nav, #apps, title{
+  nav, #apps, #title{
     display: none;
   }
 
@@ -610,41 +609,63 @@ footer a{
     justify-content: space-between;
     align-items: center;
   }
-  #nav-res li{
-    display: none;
+  #cb-nav,#cb-apps{
+    display:none;
   }
-  .nav-res{
+  .res-basic{
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-
-    margin-top:10px;
+    justify-content: space-between;
   }
   #icon-res{
     width: 40px;
     height: 40px;
-  }
 
-  #cb-nav,#cb-apps{
-    display:none;
+    margin: 10px;
   }
-  #nav-res h1{
+  #nav-res-home{
     font-weight: 300;
     font-size: 2em;
+    margin: 10px;
   }
-  #cb-nav:checked ~ li{
+  #res-hiden{
+    display: none;
+  }
+  #res-hiden1{
+    width: 100%;
+
+    margin-bottom: 10px;
+
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
   }
-  #cb-apps:checked ~ li{
+  #res-hiden2{
+    display: none;
+  }
+  .icon{
+    width: 50px;
+    height: 50px;
+  }
+
+  #cb-nav:checked ~ #res-hiden{
+    width: 100%;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
-
+  #cb-apps:checked ~ #res-hiden2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   section, aside{
     width: 100%;

@@ -33,7 +33,7 @@
                 <a href="index.html">Home</a>
               </li>
               <li>
-                <label id="nav_apps" value="">Apps</label>
+                <label class="nav_apps" value="">Apps</label>
               </li>
               <li>
                 <a href="nav/import.html">Import</a>
@@ -50,26 +50,28 @@
       </nav>
 
       <div id="nav-res">
-        <div class="nav-res">
-          <label for="cb-nav"><img src="img/menu-icon.png" alt="" id="icon-res"></label>
-          <h1>City Models Lab</h1>
+        <div class="res-basic">
+          <label for="cb-nav"><img src="img/menu-icon.png" id="icon-res"></label>
+          <a href="index.html" id="nav-res-home">City Models Lab</a>
         </div>
-        <ul class="nav-res">
-          <input type="checkbox" id="cb-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><label for="cb-apps">Apps</label></li>
-          <li><a href="nav/import.html">Import</a></li>
-          <li><a href="nav/contact.html">Contact Us</a></li>
-        </ul>
-        <ul>
+
+        <input type="checkbox" id="cb-nav">
+
+        <div id="res-hiden">
+          <ul id="res-hiden1">
+            <li><a href="index.html">Home</a></li>
+            <li><label for="cb-apps" class="nav_apps">Apps</label></li>
+            <li><a href="nav/import.html">Import</a></li>
+            <li><a href="nav/contact.html">Contact Us</a></li>
+          </ul>
           <input type="checkbox" id="cb-apps">
-          <li><a href="apps/statutory-planning.html"><img src="img/statutory-icon.png" alt="statutory-icon" class="icon">Statutory Planning</a></li>
-          <li><a href="apps/strategic-planning.html"><img src="img/strategic-icon.png" alt="strategic-icon" class="icon">Strategic Planning</a></li>
-          <li><a href="apps/smart-campus.html"><img src="img/smart-icon.png" alt="smart-icon" class="icon">Smart Campus</a></li>
-          <li><a href="apps/BIM-GIS-integration.html"><img src="img/BIM-GIS-icon.png" alt="BIM-GIS-icon" class="icon">BIM/GIS Integration</a></li>
-        </ul>
-
-
+          <ul id="res-hiden2">
+            <li><a href="apps/statutory-planning.html"><img src="img/statutory-icon.png" alt="statutory-icon" class="icon">Statutory Planning</a></li>
+            <li><a href="apps/strategic-planning.html"><img src="img/strategic-icon.png" alt="strategic-icon" class="icon">Strategic Planning</a></li>
+            <li><a href="apps/smart-campus.html"><img src="img/smart-icon.png" alt="smart-icon" class="icon">Smart Campus</a></li>
+            <li><a href="apps/BIM-GIS-integration.html"><img src="img/BIM-GIS-icon.png" alt="BIM-GIS-icon" class="icon">BIM/GIS Integration</a></li>
+          </ul>
+        </div>
       </div>
 
       <div id="apps">
