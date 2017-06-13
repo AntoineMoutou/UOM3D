@@ -56,9 +56,6 @@ function create_article(title,content,url,tags) {
 
 window.onload = function() {
 
-  var DOM_nav_apps = document.getElementById("nav_apps");
-  DOM_nav_apps.value = true;
-
   var DOM_apps = document.getElementById("apps");
 
   var DOM_search = document.getElementById("search-button");
@@ -81,8 +78,6 @@ window.onload = function() {
   function set_page() {
 
     set_header_background();
-
-    DOM_nav_apps.addEventListener("click",apps_listener, false);
 
     if (page_name == "search" || page_name == "index" || page_name.substring(0,4) == "apps") {
       DOM_search.addEventListener("click",open_search, false);
@@ -110,26 +105,6 @@ window.onload = function() {
       DOM_title.style.backgroundImage = 'url("img/index-bg.jpg")';
     }//end of if (page_name == "index")
   }//end of function set_header_background
-
-  /**
-  * @function
-  * @name cb_apps_listener
-  * @description Listener of the apps
-  * @listens DOM_nav_apps.click
-  * @param e {event} e - The listner triggered by the click
-  */
-  function apps_listener(e) {
-    e.preventDefault();
-    if (DOM_nav_apps.value){
-      var dis = "flex";
-      DOM_nav_apps.value = false;
-    }//end of if (DOM_nav_apps.value)
-    else{
-      var dis = "none";
-      DOM_nav_apps.value = true;
-    }//end of else
-    DOM_apps.style.display = dis;
-  }//end of function apps_listener
 
   /**
   * @function
