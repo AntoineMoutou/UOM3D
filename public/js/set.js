@@ -134,7 +134,7 @@ window.onload = function() {
   */
   function set_content() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://127.0.0.1:3000/articles", true);
+    xhr.open("GET", "../articles", true);
 
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200){

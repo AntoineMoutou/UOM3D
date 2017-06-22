@@ -38,7 +38,7 @@ function search() {
   var key_words = l_words.slice(1,l_words.length).join("_").split("_");
 
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://127.0.0.1:3000/articles", true);
+  xhr.open("GET", "../articles", true);
 
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4 && xhr.status == 200){

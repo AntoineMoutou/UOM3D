@@ -30,7 +30,7 @@ Building.prototype.setUrl = function() {
   var Spitch                  = "&pitch="                     + "-44.26228062802528";
   var Sroll                   = "&roll="                      + "359.933888621294";
   var Slayer_0                = "&layer_0=";
-  var Surl                    = "url%3D"                      + "http%253A%252F%252F127.0.0.1:3000%252Fdata%252F" + this.name +"%252F"+this.name+".json";
+  var Surl                    = "url%3D"                      + "http%253A%252F%252F115.146.84.141:8080%252Fdata%252F" + this.name +"%252F"+this.name+".json";
   var Sname                   = "%26name%3D"                  + "UoM_Building";
   var Sactive                 = "%26active%3D"                + "true";
   var SspreadsheetUrl         = "%26spreadsheetUrl%3D"        + "";
@@ -76,7 +76,7 @@ function import_data() {
     building_list = [];
 
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://127.0.0.1:3000/articles", true);
+    xhr.open("GET", "../articles", true);
 
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200){
@@ -218,7 +218,7 @@ function import_data() {
     form.append('file',file);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.0.0.1:3000/zip", true);
+    xhr.open("POST", "../zip", true);
 
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200){
