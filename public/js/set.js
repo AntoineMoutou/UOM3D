@@ -14,44 +14,61 @@
 */
 function create_article(title,content,url,tags) {
 
-    var article = document.createElement("article");
-    var div = document.createElement("div");
-    var div2 = document.createElement("div");
-    div.classList.add("top_content");
-    div2.classList.add("div-tags");
-    var h2 = document.createElement("h2");
-    var a = document.createElement("a");
-    var p = document.createElement("p");
+  var article = document.createElement("article");
+  var div = document.createElement("div");
+  var div2 = document.createElement("div");
+  var h2 = document.createElement("h2");
+  var a = document.createElement("a");
+  var p = document.createElement("p");
 
-    p.innerHTML = content;
-    p.classList.add("bottom_content");
-    a.innerHTML = "Launch";
-    a.href = url;
-    a.setAttribute("class", "master_link");
-    a.setAttribute("target", "_blank");
-    h2.innerHTML = title;
+  div.classList.add("top_content");
+  div2.classList.add("div-tags");
+  p.innerHTML = content;
+  p.classList.add("bottom_content");
+  a.innerHTML = "Launch";
+  a.href = url;
+  a.setAttribute("class", "master_link");
+  a.setAttribute("target", "_blank");
+  h2.innerHTML = title;
 
-    /*To print the tags in the articles*/
+  /*To print the tags in the articles*/
 
-    /*
-    tag_title = document.createElement("span");
-    tag_title.innerHTML = "TAGS :";
-    div2.appendChild(tag_title);
+  /*
+  tag_title = document.createElement("span");
+  tag_title.innerHTML = "TAGS :";
+  div2.appendChild(tag_title);
 
-    tags.forEach(function(tag){
-      var span = document.createElement("span");
-      span.innerHTML = tag;
-      div2.appendChild(span);
-    })//end of forEach
+  tags.forEach(function(tag){
+    var span = document.createElement("span");
+    span.innerHTML = tag;
+    div2.appendChild(span);
+  })//end of forEach
   */
 
-    div.appendChild(h2);
-    div.appendChild(a);
-    article.appendChild(div);
-    article.appendChild(p);
-    article.appendChild(div2);
+  div.style.margin = "5px";
+  div.style.display = "flex";
+  div.style.flexDirection = "row";
+  div.style.justifyContent = "space-between";
+  div.style.alignItems = "center";
+  div2.style.margin = "5px";
+  div2.style.fontSize = "0.7em";
+  div2.style.fonyWeight = "400";
+  div2.style.color = "#333333";
+  p.style.margin = "5px";
+  a.style.border = "solid 2px black";
+  a.style.borderRadius = "5px";
+  a.style.padding = "5px";
+  a.style.textAlign = "center";
+  a.style.backgroundColor = "#CCCCCC";
+  a.style.color = "black";
 
-    return article;
+  div.appendChild(h2);
+  div.appendChild(a);
+  article.appendChild(div);
+  article.appendChild(p);
+  article.appendChild(div2);
+
+  return article;
 }//end of function create_article
 
 /**
@@ -76,8 +93,6 @@ function alert(text,timeout=1500){
 }//end of function alert
 
 window.onload = function() {
-
-  var DOM_apps = document.getElementById("apps");
 
   var DOM_search = document.getElementById("search-button");
   var DOM_search_text_area = document.querySelector("#title input");

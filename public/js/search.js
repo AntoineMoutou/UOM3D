@@ -19,6 +19,19 @@ function create_not_found(key) {
   a.setAttribute("class", "master_link");
   h2.innerHTML = "Articles not found for key word(s) : " + key.join(", ");
 
+  div.style.margin = "5px";
+  div.style.display = "flex";
+  div.style.flexDirection = "row";
+  div.style.justifyContent = "space-between";
+  div.style.alignItems = "center";
+  p.style.margin = "5px";
+  a.style.border = "solid 2px black";
+  a.style.borderRadius = "5px";
+  a.style.padding = "5px";
+  a.style.textAlign = "center";
+  a.style.backgroundColor = "#CCCCCC";
+  a.style.color = "black";
+
   div.appendChild(h2);
   div.appendChild(a);
   article.appendChild(div);
