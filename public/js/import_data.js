@@ -20,7 +20,7 @@ Building.prototype.equalTo = function(building){
 }//end of function
 
 Building.prototype.setUrl = function() {
-  var Sbase = "http://www.3dcitydb.org/3dcitydb-web-map/1.1/3dwebclient/index.html?";
+  var Sbase = "115.146.84.141:8080/3dcitydb-web-map-1.1.0/3dwebclient//index.html?";
   var Stitre                  = "title="                      + this.title;
   var SbatchSize              = "&batchSize="                 + "1";
   var Slatitude               = "&latitude="                  + "-37.7952976";
