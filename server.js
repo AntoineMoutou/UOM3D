@@ -6,7 +6,36 @@ var unzip      = require('unzip2');
 var JSZip      = require('jszip');
 var jsonfile   = require('jsonfile')
 
+const pg       = require('pg');
+
 var app = express();
+
+var config = {
+  user: 'mohsen',
+  database: 'mohsen',
+  password: 'Cml2017',
+  host: '115.146.84.141',
+  port: 5432,
+  max: 10,
+  idleTimeoutMillis: 30000,
+};
+
+const pool = new pg.Pool(config);
+
+pool.on('error', function (err, client){
+  console.error('idle client error', err.message, err.stack);
+});
+
+module.exports.query = function (text, values, callback) {
+  console.log('query:', text, values);
+  return pool.query(text, values, callback);
+};
+
+module.exports.connect = function (callback) {
+  return pool.connect(callback);
+};
+
+
 
 /**
  * Unzip the file out.zip in the zip folder and write his content in the folder named data
@@ -56,16 +85,16 @@ app.get('/views/:page', function(req, res) {
 
 app.get('/data/*', function(req,res) {
 
-  res.set('Access-Control-Allow-Origin','*');
-	res.set('Access-Control-Allow-Headers', 'Origin');
+  //res.set('Access-Control-Allow-Origin','*');
+	//res.set('Access-Control-Allow-Headers', 'Origin');
 
   res.sendFile(path.join(__dirname,req.path.substring(1,req.path.length)));
 });
 
 app.get('/articles', function(req, res) {
 
-  res.set('Access-Control-Allow-Origin','*');
-	res.set('Access-Control-Allow-Headers', 'Origin');
+  //res.set('Access-Control-Allow-Origin','*');
+	//res.set('Access-Control-Allow-Headers', 'Origin');
 
   var ch = path.join(__dirname, 'articles/articles.json');
 
@@ -83,8 +112,8 @@ app.get('/3dcitydb-web-map-1.1.0/*', function(req, res) {
 
 app.post('/zip', function(req,res) {
 
-  res.set('Access-Control-Allow-Origin','*');
-	res.set('Access-Control-Allow-Headers', 'Origin');
+  //res.set('Access-Control-Allow-Origin','*');
+	//res.set('Access-Control-Allow-Headers', 'Origin');
 
   var form = new formidable.IncomingForm();
   var fName, fTitle, fApps, fContent, fUrl, fTags;
