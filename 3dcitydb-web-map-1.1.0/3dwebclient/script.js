@@ -84,6 +84,10 @@
   Cesium.knockout.track(addTerrainViewModel);
 	Cesium.knockout.applyBindings(addTerrainViewModel, document.getElementById('citydb_addterrainpanel'));
 
+	// new
+	var depJson ;
+
+
 	/*---------------------------------  Load Configurations and Layers  ----------------------------------------*/
 
 	intiClient();
@@ -114,6 +118,10 @@
 			cesiumInfoBoxElement.style.top = '90px';
 			cesiumInfoBoxElement.style.zIndex='300';
 		}
+
+		//new
+		create_depJson();
+
 
 		// set title of the web page
 		var titleStr = CitydbUtil.parse_query_string('title', window.location.href);
@@ -170,6 +178,44 @@
 	}
 
     /*---------------------------------  methods and functions  ----------------------------------------*/
+
+	//new
+	function create_depJson() {
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "../../articles/department", true);
+
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				if(xhr.responseText == "undefined"){
+					alert("Request error", 2000);
+				}//end of if(xhr.responseText == "undefined")
+				else{
+					var response = xhr.responseText;
+				 	depJson = JSON.parse(response);
+
+					var lastDep = "";
+					var departmentListElement = document.getElementById("citydb_departmentlist");
+
+					for (var i = 0; i < depJson.Output.length; i++) {
+						if (lastDep!=depJson.Output[i]["Department Name"]){
+							var option = document.createElement("option");
+							option.text = depJson.Output[i]["Department Name"]
+							option.value = option.text;
+							lastDep = option.text;
+							departmentListElement.add(option);
+						}
+					}// end of for
+				}//end of else
+			}//end of if(xhr.readyState == 4 && xhr.status == 200)
+			else if(xhr.readyState == 4 && xhr.status != 200){
+				busy = false;
+				alert("Servor error",2000);
+			}//end of else if(xhr.readyState == 4 && xhr.status != 200)
+		}
+		xhr.send();
+	}
+
 
 	function inspectTileStatus() {
 		setInterval(function() {
@@ -462,32 +508,65 @@
 		//new
 		var departmentListElement = document.getElementById("citydb_departmentlist");
 		departmentListElement.onchange = function() {
-			var listID = ['1000','1002','1005'];
-			var primitives = citydbKmlLayer._citydbKmlDataSource._visualizers[12]._primitives._primitives;
+			var depSelected = departmentListElement.value;
+			var listID =[];
 
-			citydbKmlLayer.unHighlightAllObjects();
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "../../articles/department", true);
 
-			for (var i = 1; i < primitives.length; i++) {
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					if(xhr.responseText == "undefined"){
+						alert("Request error", 2000);
+					}//end of if(xhr.responseText == "undefined")
+					else{
+						var response = xhr.responseText;
+					 	depJson = JSON.parse(response);
 
-				var object = primitives[i];
+						var departmentListElement = document.getElementById("citydb_departmentlist");
 
-				var targetEntity = object.id;
-		 		var globeId = targetEntity._name;
-				var b = false;
+						for (var i = 0; i < depJson.Output.length; i++) {
+							if (depSelected==depJson.Output[i]["Department Name"]){
+								listID.push(depJson.Output[i]["Building Code"])
+							}
+						}// end of for
 
-				for (var j = 0; j < listID.length; j++) {
-					if (listID[j]==globeId) {
-						b = true
-					}
-				}
+						var primitives = citydbKmlLayer._citydbKmlDataSource._visualizers[12]._primitives._primitives;
 
-				if (b) {
-					var highlightThis = {};
+						// clear all other Highlighting status
+						citydbKmlLayer.unHighlightAllObjects();
 
-					highlightThis[globeId] = highlightColor;
-					citydbKmlLayer.highlight(highlightThis);
-				}
+						for (var i = 1; i < primitives.length; i++) {
+
+							var object = primitives[i];
+
+							var targetEntity = object.id;
+					 		var globeId = targetEntity._name;
+							var b = false;
+
+							for (var j = 0; j < listID.length; j++) {
+								if (!(-1==globeId.split('-').indexOf(listID[j]))) {
+									b = true
+								}
+							}
+
+							if (b) {
+								var highlightThis = {};
+
+								highlightThis[globeId] = highlightColor;
+								citydbKmlLayer.highlight(highlightThis);
+							}
+						}
+
+					}//end of else
+				}//end of if(xhr.readyState == 4 && xhr.status == 200)
+				else if(xhr.readyState == 4 && xhr.status != 200){
+					busy = false;
+					alert("Servor error",2000);
+				}//end of else if(xhr.readyState == 4 && xhr.status != 200)
 			}
+			xhr.send();
+
     };
 
 

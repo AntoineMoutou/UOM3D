@@ -106,6 +106,21 @@ app.get('/articles', function(req, res) {
   });//end of readFile
 });//end of app.get(/articles)
 
+app.get('/articles/department', function(req, res) {
+
+  //res.set('Access-Control-Allow-Origin','*');
+	//res.set('Access-Control-Allow-Headers', 'Origin');
+
+  var ch = path.join(__dirname, 'articles/department.json');
+
+  fs.readFile(ch, 'utf8', function(err,data) {
+    if (err) throw err;
+    else{
+      res.send(data);
+    }//end of else
+  });//end of readFile
+});//end of app.get(/articles)
+
 app.get('/3dcitydb-web-map-1.1.0/*', function(req, res) {
   res.sendFile(path.join(__dirname,req.path.substring(1,req.path.length)));
 });
