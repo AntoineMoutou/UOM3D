@@ -215,6 +215,7 @@ window.onload = function() {
             //DOM_section[0].style.width = "60%";
             //DOM_aside[0].style.width = "40%";
             document.getElementsByClassName("box2")[0].style.width = "100%";
+            document.getElementsByClassName("box2")[0].style.height = "auto";
             document.querySelector('main').style.flexDirection = "column";
             document.querySelector('main').style.alignItems = "center";
           }//end of else if (page_name == "import")
