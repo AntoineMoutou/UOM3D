@@ -49,7 +49,9 @@ function create_article(title,content,url,tags) {
     div.appendChild(a);
     article.appendChild(div);
     article.appendChild(p);
-    article.appendChild(div2);
+    if (div2.innerHTML != "") {
+      article.appendChild(div2);
+    }
 
     return article;
 }//end of function create_article
